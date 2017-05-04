@@ -3,13 +3,13 @@
 ## Table of Contents
 
 1. [Installation](#installation)
-  1. [WordPress](#wordpress)
-  2. [Plugins](#plugins) 	
-  3. [Theme](#theme)
+   1. [WordPress](#wordpress)
+   2. [Plugins](#plugins) 	
+   3. [Theme](#theme)
 2. [Configuration](#configuration)
-  1. [Login With Ajax]()
-  2. [Homepage Setup]()
-  3. [Site Options]()
+   1. [Login With Ajax](#login-with-ajax)
+   2. [Homepage Setup](#homepage-setup)
+   3. [Site Options](#site-options)
 
 ## Installation
 
