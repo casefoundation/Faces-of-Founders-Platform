@@ -1,0 +1,721 @@
+html {
+	font-size: 16px; // Font size reset for rem use
+	@include rem-fallback(line-height, 1.2);
+}
+
+body, html, input, button, div, span, h1, h2, h3, h4, h5, h6, li, ul, ol, button, p {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body.judge {
+	#wpadminbar {
+		#wp-admin-bar-wp-logo, #wp-admin-bar-site-name, #wp-admin-bar-search {
+			display: none !important;
+		}
+	}
+}
+.section-intro {
+	.container {
+		width: 935px;
+		max-width: 100%;
+		p {
+			@include rem-fallback(font-size, 1.375);
+		}
+	}
+}
+.csl-change-password-container {
+	padding: 40px 0;
+	.csl-password-form {
+		background: #e9e9e9;
+		padding: 40px 60px;
+		position: relative;
+		width: 420px;
+		margin: 0 auto;
+		.error-content {
+			border: 1px solid #ff6b11;
+			background: rgba(255,255,255,0.3);
+			border-radius: 0;
+			color: #ff6b11;
+			line-height: 1.4;
+			text-align: center;
+			padding: 15px;
+			margin-bottom: 20px;
+			p {
+				margin: 0;
+			}
+		}
+		form {
+			&:before {
+				content: '';
+				position: relative;
+				width: 100%;
+				height: 100px;
+				display: block;
+				background: url(../src/img/logo.png) no-repeat 0 0;
+				background-size: 100%;
+				margin-bottom: 30px;
+			}
+			.csl-form-input {
+				width: 100%;
+				font-size: 20px;
+				border: 1px solid #ffffff;
+				&:focus {
+					outline: none;
+					border-color: #80deea;
+				}
+			}
+			.csl-form-description {
+				font-size: 14px;
+				line-height: 1.4;
+				color: #494949;
+			}
+			.csl-submit-btn {
+				width: 100%;
+				border: 0;
+				background: #80deea;
+				height: 40px;
+				text-align: center;
+				color: #000;
+			}
+		}
+	}
+	.csl-success-message {
+		text-align: center;
+		h2 {
+			font-size: 48px;
+			font-weight: 600;
+			text-transform: uppercase;
+			font-style: italic;
+			margin-bottom: 0;
+		}
+		.btn-container {
+			margin-top: 50px;
+			.btn {
+				display: inline-block;
+				margin: 0 10px;
+				max-width: 250px;
+				float: none;
+				color: #333333 !important;
+				text-decoration: none;
+				&:hover {
+					color: #ffffff !important;
+					text-decoration: none !important;
+				}
+			}
+		}
+	}
+}
+.fof-modal {
+	.modal-dialog {
+        width: 420px;
+		margin: 50px auto;
+		.modal-content {
+          border-radius: 0;
+          background: #F3F3F3;
+          box-shadow: 7px 7px 9px rgba(#5c5c5c,0.3);
+          padding: 30px 25px;
+          position: relative;
+          .close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+          }
+          p {
+            font-size: 18px;
+            color: #414141;
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+          .select-container {
+            width: 100%;
+            margin-bottom: 20px;
+            select, input {
+              background: #ffffff;
+              -webkit-border-radius: 0;
+              -moz-border-radius: 0;
+              border-radius: 0;
+              border: none;
+              width: 100%;
+              line-height: 40px;
+              height: 40px;
+            }
+            &.multiple {
+              select {
+                height: 100px;
+                padding: 10px;
+              }
+            }
+          }
+          .btn {
+            float: none;
+            .fa {
+              top: 15px;
+              display: none;
+            }
+            &.orange {
+              background: #FB7343;
+              color: #ffffff;
+            }
+            &.recused-stories-btn {
+              margin-top: 10px;
+            }
+          }
+		}
+	}
+    &.loading {
+      .modal-dialog {
+        .modal-content {
+          .btn {
+            .fa {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+}
+.sweet-alert {
+	border-radius: 0;
+	background: #F3F3F3;
+	box-shadow: 7px 7px 9px rgba(#5c5c5c,0.3);
+	h2 {
+		font-weight: bold;
+		font-style: italic;
+		color: #414141;
+		font-size: 28px;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+	fieldset {
+		max-width: 120px;
+		margin: 0 auto;
+		input {
+          text-align: center;
+          line-height: 44px;;
+          height: 44px;
+		}
+	}
+	button {
+		margin: 5px 5px 10px 5px;
+	}
+	button.cancel {
+		background: #FB7343;
+		border-radius: 0;
+		width: 160px;
+        &:hover {
+          background: #d75729;
+        }
+	}
+	.sa-confirm-button-container {
+		button {
+            background-color: #80DEEA !important;
+            color: #424043 !important;
+            border-radius: 0 !important;
+            min-width: 160px;
+		}
+	}
+	.sa-input-error {
+		top: 22px;
+		right: 32px;
+	}
+	&.custom-input {
+		.sa-input-error {
+		  top: 14px;
+		  right: 24px;
+		}
+		fieldset {
+			max-width: 120px;
+			margin: 0 auto;
+			position: relative;
+			background: #ffffff;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			&:before {
+				content: "\f077";
+				font-family: "FontAwesome";
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 22px;
+				height: 22px;
+				display: block;
+				background: #80DEEA;
+				color: #048193;
+				text-align: center;
+				line-height: 22px;
+			}
+			&:after {
+				content: "\f078";
+				font-family: "FontAwesome";
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				width: 22px;
+				height: 22px;
+				display: block;
+				background: #80DEEA;
+				color: #048193;
+				text-align: center;
+				line-height: 22px;
+			}
+			input {
+				text-align: center;
+				margin: 0;
+				background: none !important;
+				font-size: 22px;
+				font-weight: bold;
+				padding-right: 2px !important;
+				line-height: 44px;;
+				height: 44px;
+				position: relative;
+				z-index: 2;
+				text-indent: -11px;
+				&::-webkit-inner-spin-button {
+					opacity: 0;
+				}
+			}
+		}
+	}
+	&.final-popup {
+		h2 {
+			margin-bottom: 0;
+		}
+		p {
+			margin-bottom: 20px;
+			font-size: 18px;
+			font-weight: 500;
+		}
+	}
+}
+body {
+	@each $key, $value in $theme {
+		@if map-has-key($config, $key) {
+			.#{$value} & {
+				background: setStyle($config, $key, fifth);
+				color: setStyle($config, $key, sixth);
+				@include font_regular();
+				@include rem-fallback(font-size, 1);
+				@include rem-fallback(line-height, 1.85);
+				.form-control, input:not([type=submit]), textarea {
+					background:#ffffff;
+					border: none;
+					box-shadow: none;
+					-o-box-shadow: none;
+					-ms-box-shadow: none;
+					-moz-box-shadow: none;
+					-webkit-box-shadow: none;
+					@include rem-fallback(padding, 0.657, 1);
+				}
+                                input {
+                                    -webkit-appearance: none;
+                                }
+				&.home{
+					.main-content-container{
+						padding-top: 30px;
+					}
+				}
+				.main-content-container {
+					background: none;
+					position: relative;
+					z-index: 0;
+				}
+				&.page-template-about-us{
+					.main-content-container{
+						padding: 0px;
+					}
+				}
+				&.page-template {
+					.main-content-container {
+						z-index: 1;
+					}
+				}
+				&.page-template-default, &.single, &.error404 {
+					&:not(.home) {
+						.main-content-container {
+							z-index: 1;
+							padding: 140px 30px 50px;
+							.container {
+								max-width: 100%;
+							}
+							article {
+								a {
+									color: setStyle($config, $key, second);
+									&:hover {
+										text-decoration: underline;
+									}
+								}
+							}
+						}
+						.section-devider {
+							&.bot-devider {
+								height: 120px;
+					          &:before {
+					            content: none;
+					          }
+					          &:after {
+					            background: setStyle($config, $key, second);
+								border-color: setStyle($config, $key, shadow);
+								border-width: 10px;
+								border-top: 1px solid setStyle($config, $key, second);
+								height: 120px;
+								top: -94px;
+					          }
+							}
+				         	&.top-devider {
+				         		height: 120px;
+				          		top: -70px;
+					        	z-index: 1;
+					        	&:before {
+					        		content: none;
+					        	}
+					        	&:after {
+									background: setStyle($config, $key, second);
+					            	border-bottom: none;
+					            	border-top: 10px solid setStyle($config, $key, shadow);
+					            	height: 120px;
+					            	top: initial;
+					            	bottom: 17px;
+					            	@include transform(translate(-50%, 50px) rotate(1deg));
+					        	}
+				          	}
+				        }
+					}
+				}
+				section{
+					float: left;
+					width: 100%;
+				}
+				.visible-nav {
+					//helper class that makes elements not scrollable when nav is visible in mobile
+					height: 100%;
+					left: 0;
+					position: absolute;
+					overflow: hidden !important;
+					top: 0;
+					width: 100%;
+				}
+				&.logged-in {
+					position: relative;
+					@media only screen and (max-width: 600px) {
+						#wpadminbar {
+							top: -46px;
+						}
+						.header {
+							&.fixed-menu {
+								top: -0px;
+							}
+						}
+					}
+				}
+				.btn {
+					background:setStyle($config, $key, first);
+					border: none;
+					@include border-radius(0);
+					color: setStyle($config, $key, sixth);
+					float: left;
+					@include rem-fallback(font-size, 1);
+					line-height: 45px;
+					@include font_bold();
+					padding: 0 15px;
+					width: 100%;
+					@include transition(all 0.2s ease-in-out);
+					position: relative;
+					.fa {
+						position: absolute;
+						top: 50%;
+						@include rem-fallback(font-size, 1);
+						right: 16px;
+						font-size: 18px;
+						@include transform(translateY(-50%));
+					}
+					&:hover {
+						background:setStyle($config, $key, second);
+						color: white;
+					}
+				}
+				.section-devider {
+		          display: block;
+		          position: absolute;
+		          top: 0;
+		          height: 70px;
+		          left: 0;
+		          overflow: hidden;
+		          width: 100%;
+		          &:before {
+		            background: setStyle($config, $key, shadow);
+		            content: "";
+		            top: -60px;
+		            display: block;
+		            height: 50px;
+		            left: 50%;
+		            position: absolute;
+		            width: 150%;
+		            @include transform(translate(-50%, 50px) rotate(1deg));
+		            z-index: 1;
+		          }
+		          &:after {
+		            background: setStyle($config, $key, fifth);
+		            border-bottom: 1px solid setStyle($config, $key, fifth);
+		            content: "";
+		            top: -70px;
+		            display: block;
+		            height: 50px;
+		            left: 50%;
+		            position: absolute;
+		            width: 150%;
+		            @include transform(translate(-50%, 50px) rotate(1deg));
+		            z-index: 2;
+		          }
+		        }
+		        .modal {
+		        	.modal-body {
+		        		padding: 15px 50px;
+		        	}
+		        }
+				/* RESPONSIVE
+				\*------------------------------------*/
+				@media only screen and (max-width: 479px) {
+					img.alignleft, img.alignright, .alignleft img, .alignright img, *.alignleft img, *.alignright img {
+						display: block;
+						float: none;
+						margin: 20px auto;
+					}
+				}
+
+                                .modal {
+                                    .modal-body {
+                                        .btn {
+                                            float: none;
+                                            &.processing {
+                                                display:none;
+                                            }
+                                        }
+                                        .tweet_image {
+                                                width: 250px;
+                                                margin: auto;
+                                                display: inherit;
+                                                margin-bottom: 20px;
+                                        }
+                                        .form-group {
+                                            background: #fff;
+                                            position: relative;
+                                            textarea {
+                                                resize: none;
+                                                padding-bottom: 20px;
+                                                background: #f3f3f3;
+                                            }
+                                            .char-count {
+                                                color: #bdbdbd;
+                                                position: absolute;
+                                                right: 10px;
+                                                bottom: 4px;
+                                                z-index: 1;
+                                            }
+                                        }
+                                    }
+                                    &#twitter_share {
+                                        form {
+                                            .btn {
+                                                &.processing {
+                                                    i {
+                                                        margin-top: -8px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .thanks-image-tweet {
+                                            display:none;
+                                            padding: 80px 0;
+
+                                            h3 {
+                                                text-align: center;
+                                                margin-bottom: 20px;
+                                            }
+                                            p {
+                                                text-align: center;
+                                            }
+                                        }
+                                    }
+                                }
+			}
+		} @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}
+
+h1 {
+	@include rem-fallback(font-size, 2.5);
+}
+h2 {
+	@include rem-fallback(font-size, 2.250);
+}
+h3 {
+	@include rem-fallback(font-size, 1.75);
+}
+h4 {
+	@include rem-fallback(font-size, 1.375);
+}
+h5 {
+	@include rem-fallback(font-size, 1.125);
+}
+h6 {
+	@include rem-fallback(font-size, 1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	//font-family: $font-bold;
+	@include rem-fallback(margin, 0, 0, 1, 0);
+	padding: 0;
+	i, em {
+		//font-family: $font-boldItalic;
+	}
+}
+
+i, em {
+	//font-family: $font-lightItalic;
+	strong, b {
+		//font-family: $font-boldItalic;
+	}
+}
+
+strong, b {
+	//font-family: $font-bold;
+	i, em {
+		//font-family: $font-boldItalic;
+	}
+}
+
+a, a:focus {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+i.fa {
+	//@include rem-fallback(font-size, $size-icon);
+}
+
+ul, ol {
+	@include rem-fallback(margin, 0, 0, 1.2, 0);
+	li {
+		&:last-child {
+			margin: 0;
+		}
+	}
+}
+
+p {
+	//@include rem-fallback(font-size, $size-p);
+	@include rem-fallback(margin, 0, 0, 1.2, 0);
+}
+
+hr {
+	@include rem-fallback(margin, 3.125, 0);
+}
+
+button {
+	border: none;
+	background: none;
+}
+
+// FORM
+form {
+	input, .form-control {
+		@include border-radius(0px);
+	}
+}
+
+// LAYOUT STYLES
+.main-content-container {
+	float: left;
+	@include rem-fallback(padding-bottom, 1.25);
+	@include rem-fallback(padding, 3.125, 0, 0);
+	width: 100%;
+	.main-content {
+		float: left;
+		width: 100%;
+		ol, ul {
+			li {
+				@include rem-fallback(margin, 0, 0, 0.5, 0);
+			}
+		}
+		.container {
+			.row {
+				article {
+					&:last-child {
+						p {
+							&:last-child {
+								margin-bottom: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.center {
+	text-align: center;
+}
+
+.single {
+	.main-content-container {
+		.main-content {
+			.container {
+				.row {
+					article {
+						position: static;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* SELECTION HIGHLIGHT
+\*------------------------------------*/
+::selection {
+	// Function to pull the Theme's Color Scheme
+	@each $key, $value in $theme {
+		@if map-has-key($config, $key) {
+			.#{$value} & {
+				background: setStyle($config, $key, second);
+				color: white;
+			}
+		} @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+	text-shadow:none;
+}
+::-webkit-selection {
+	// Function to pull the Theme's Color Scheme
+	@each $key, $value in $theme {
+		@if map-has-key($config, $key) {
+			.#{$value} & {
+				background: setStyle($config, $key, second);
+				color: white;
+			}
+		} @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+	text-shadow:none;
+}
+::-moz-selection {
+	// Function to pull the Theme's Color Scheme
+	@each $key, $value in $theme {
+		@if map-has-key($config, $key) {
+			.#{$value} & {
+				background: setStyle($config, $key, second);
+				color: white;
+			}
+		} @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+	text-shadow:none;
+}

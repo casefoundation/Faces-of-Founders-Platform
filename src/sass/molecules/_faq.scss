@@ -1,0 +1,78 @@
+.faq-container {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background: #FFF;
+        float: left;
+        padding: 50px 0px 0px;
+        position: relative;
+        width: 100%;
+        .section-devider {
+          height: 120px;
+          &:before {
+            content: none;
+          }
+          &:after {
+            background: setStyle($config, $key, second);
+            border-color: setStyle($config, $key, shadow);
+            border-width: 10px;
+            border-top: 1px solid setStyle($config, $key, second);
+            height: 120px;
+            top: -94px;
+            @include transform(rotate(1deg));
+            left: 0;
+          }
+        }
+        h2{
+          text-align: center;
+          width: 100%;
+          float: left;
+          margin-bottom: 50px;
+          font-size: 40px;
+          font-style: italic;
+          color: #5b5b5b;
+        }
+        ul.faq-items-container{
+          float: left;
+          padding: 0px;
+          li.faq-item{
+            list-style: none;
+            margin-bottom: 40px;
+            float: left;
+            width: 100%;
+            h3{
+              font-weight: bold;
+              font-style: italic;
+              padding-left: 20px;
+              position: relative;
+              color: #3d3d3d;
+              font-size: 24px;
+              &:before{
+                width: 10px;
+                height: 15px;
+                background: #80deea;
+                content: '';
+                position: absolute;
+                left: 0px;
+                top: 5px;
+              }
+            }
+            p{
+              color: #3d3d3d;
+              font-size: 18px;
+              margin-bottom: 15px;
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+            > ul {
+              margin-bottom: 15px;
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

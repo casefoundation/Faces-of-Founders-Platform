@@ -1,0 +1,159 @@
+.founders-grid-container {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        float: left;
+        overflow: hidden;
+        width: 100%;
+        .founders-grid {
+          margin: 0 auto;
+        }
+        .slick-slide {
+          &:focus, &:active {
+            outline: none;
+          }
+        }
+        .slick-list {
+          overflow: visible;
+        }
+        .slick-arrow {
+          background: setStyle($config, $key, first);
+          @include border-radius(50%);
+          display: block;
+          font-size: 0;
+          height: 55px;
+          padding: 0;
+          position: absolute;
+          text-align: center;
+          top: 50%;
+          width: 55px;
+          z-index: 1;
+          @include transition(all 0.2s ease-in-out);
+          @include transform(translateY(-50%));
+          &:before, &:after {
+            color: white;
+            display: inline-block;
+            font-family: 'FontAwesome';
+            font-size: 36px;
+            line-height: 55px;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          &:hover, &:active {
+            background: setStyle($config, $key, second);
+            &:before {
+              color: white;
+            }
+          }
+          &:focus, &:active {
+            outline: none;
+          }
+          &.slick-prev {
+            left: -55px;
+            &:before {
+              content:"\f104";
+              left: -1px;
+              position: relative;
+            }
+          }
+          &.slick-next {
+            right: -55px;
+            &:before {
+              content:"\f105";
+              right: -3px;
+              position: relative;
+            }
+          }
+          &[disabled="disabled"] {
+              &:after {
+                content: "\f021";
+                position: absolute;
+                left:0;
+                width: 100%;
+                -webkit-animation: fa-spin 2s infinite linear;
+                animation: fa-spin 2s infinite linear;
+                font-size: 20px;
+              }
+              &:before {
+                  visibility: hidden;
+              }
+              background: setStyle($config, $key, first);
+              opacity: .8;
+            }
+            
+        }
+        @media only screen and (min-width: 1296px) {
+          .founders-grid {
+            max-width: 1160px;
+          }
+        }
+        @media only screen and (max-width: 1295px) {
+          .founders-grid {
+            max-width: 928px;
+          }
+        }
+        @media only screen and (max-width: 1044px) {
+          .founders-grid {
+            max-width: 696px;
+          }
+        }
+        @media only screen and (max-width: 807px) {
+          .founders-grid {
+            max-width: 464px;
+          }
+        }
+        @media only screen and (min-width: 580px) {
+          .founders-grid {
+            padding-top: 40px;
+            .slick-slide {
+              > div {
+                height: 210px;
+                margin: 0 11px 22px 11px !important;
+              }
+              img {
+                max-width: 100%;
+                height: auto;
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 579px) {
+          .founders-grid {
+            max-width: 100%;
+            width: 100%;
+            .slick-slide {
+              > div {
+                @include aspect-ratio(1,1);
+                margin: 0 !important;
+                .grid-item {
+                  padding: 2px;
+                  img {
+                    object-fit: cover;
+                    object-position: center;
+                    width: 100%;
+                    height: auto;
+                  }
+                }
+              }
+            }
+          }
+        }
+        
+        .founders-loading {
+            width: 100%;
+            height: 696px;
+            position: relative;
+            
+            i {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+            }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

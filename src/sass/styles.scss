@@ -1,0 +1,44 @@
+/*
+Theme styles
+*/
+
+// Theme Configuration
+@import "mixins";
+@import "variables";
+@import "theme-config";
+@import "wordpress-core";
+@import "csl-customize";
+@import "theme-styles";
+
+// Vendor
+@import "../slick/slick.scss";
+
+// Organisms
+@import "organisms/header";
+@import "organisms/footer";
+
+// Molecules
+@import "molecules/background-grid.scss";
+@import "molecules/photo-generator.scss";
+@import "molecules/founders-grid.scss";
+@import "molecules/founder-story.scss";
+@import "molecules/nominate-entrepreneur.scss";
+@import "molecules/about-description.scss";
+@import "molecules/hero.scss";
+@import "molecules/faq.scss";
+@import "molecules/primary-partners.scss";
+@import "molecules/partners.scss";
+@import "molecules/reviewers.scss";
+@import "molecules/resources.scss";
+@import "molecules/login.scss";
+@import "molecules/dashboard.scss";
+@import "molecules/dashboard-judge.scss";
+@import "molecules/dashboard-single-history.scss";
+@import "molecules/menu.scss";
+
+
+// Pages
+@import "pages/error404.scss";
+
+// Templates
+//@import "templates/contact-us.scss";

@@ -1,0 +1,146 @@
+.page-template-login {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background: #0097a7 url(../src/img/header-grid-bg.png) no-repeat;
+        background-size: 1500px auto;
+        background-position: center top;
+        width: 100%;
+        display: block;
+        input{
+          -webkit-appearance: inherit!important;
+        }
+        .main-content-container{
+          margin: 200px 0px;
+          padding-top: 0px;
+          .log-form-container{
+            width: 420px;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            .lwa{
+              background: #e9e9e9;
+              padding: 40px 60px;
+              position: relative;
+              float: left;
+              width: 100%;
+              &:before{
+                content: '';
+                position: relative;
+                width: 100%;
+                height: 100px;
+                float: left;
+                background: url("../src/img/logo.png") no-repeat 0 0;
+                background-size: 100%;
+                margin-bottom: 30px;
+              }
+              .lwa-status {
+                float: left;
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+                a {
+                  text-align: center;
+                }
+                &.lwa-status-invalid {
+                  border-color: #ff6b11;
+                  background: rgba(white, 0.3);
+                  border-radius: 0;
+                  color:#ff6b11;
+                  line-height: 1.4;
+                  a {
+                    display: block;
+                    font-style: italic;
+                    color: #0097a7;
+                    text-decoration: underline;
+                    margin-top: 4px;
+                  }
+                }
+              }
+              form{
+                table{
+                  width: 100%;
+                  float: left;
+                  tbody{
+                    width: 100%;
+                    float: left;
+                    tr{
+                      width: 100%;
+                      float: left;
+                      td{
+                        width: 100%;
+                        float: left;
+                      }
+                    }
+                    .lwa-submit{
+                      .lwa-submit-button{
+                        #lwa_wp-submit{
+                          width: 100%;
+                          text-align: center;
+                          float: left;
+                          border: 0px;
+                          background: #80deea;
+                          height: 40px;
+                          text-align: center;
+                          color: #000;
+                        }
+                      }
+                      .lwa-submit-links{
+                        br{
+                          display: none;
+                        }
+                        .lwa-links-remember{
+                          font-family: Arial, Helvetica, sans-serif;
+                          display: block;
+                          text-align: center;
+                          width: 100%;
+                          font-style: italic;
+                          color: #0097a7;
+                        }
+                        input, label{
+                          display: none;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                .lwa-username-label{
+                  display: none;
+                }
+                .lwa-password-label{
+                  display: none;
+                }
+                .lwa-password-input{
+                  width: 100%;
+                  float: left;
+                  margin-bottom: 20px;
+                  input{
+                    width: 100%;
+                    float: left;
+                    text-align-last: center;
+                  }
+                }
+                .lwa-username-input{
+                  width: 100%;
+                  float: left;
+                  margin-bottom: 20px;
+                  input{
+                    width: 100%;
+                    float: left;
+                    text-align-last: center;
+                  }
+                }
+              }
+            }
+          }
+        }
+        header{
+          display: none;
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

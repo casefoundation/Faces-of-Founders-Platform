@@ -1,0 +1,963 @@
+.photo-generator {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        .generator-box {
+          background: white;
+          display: block;
+          float: none;
+          margin: 0 auto;
+          overflow: hidden;
+          padding: 10px;
+          max-width: 935px;
+          min-height: 437px;
+          .generator-tools {
+            display: block;
+            padding-left: 427px;
+            position: relative;
+            .title {
+              border-bottom: 1px solid setStyle($config, $key, fourth);
+              @include font_regularItalic();
+              letter-spacing: 1px;
+              margin: 0;
+              padding: 7px 0 15px;
+              text-align: center;
+            }
+            .steps-container {
+              .step {
+                border-bottom: 1px solid setStyle($config, $key, fourth);
+                @include flexbox();
+                ul {
+                  margin: 0;
+                  padding: 0;
+                  li {
+                    float: left;
+                    list-style: none;
+                    @include rem-fallback(font-size, 1.125);
+                  }
+                }
+                &.step-1 {
+                  ul {
+                    @include alignItems(center);
+                    @include flexbox();
+                    @include flex(0 0 100%);
+                    @include justifyContent(space-between);
+                    padding: 12px 18px 0 28px;
+                    li {
+                      @include inlineFlexbox();
+                      float: none;
+                      line-height: 50px;
+                      &:not(:first-child) {
+                        background: white;
+                        @include border-radius(50%);
+                        height: 58px;
+                        overflow: hidden;
+                        width: 58px;
+                        border: 2px solid transparent;
+                        padding: 2px;
+                        @include transition(all 0.2s ease-in-out);
+                        &:hover {
+                          border: 2px solid setStyle($config, $key, first);
+                          .upload-photo {
+                            background: setStyle($config, $key, first);
+                            border-color: transparent;
+                            color: setStyle($config, $key, sixth);
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                &.step-2 {
+                  .step-action {
+                    padding: 19px 83px 19px 95px;
+                    position: relative;
+                    max-width: 368px;
+                    .message-slider {
+                      .slick-slide {
+                        @include font_regular();
+                        margin: 0;
+                        min-height: 45px;
+                        @include rem-fallback(padding, 0, 1);
+                        text-align: center;
+                        position: relative;
+                        input {
+                          visibility: hidden;
+                          height: 0;
+                          width: 0;
+                        }
+                        label {
+                          @include font_regular();
+                        }
+                        span {
+                          display: block;
+                          line-height: 18px;
+                          position: absolute;
+                          text-align: center;
+                          width: 100%;
+                          top: 50%;
+                          left: 50%;
+                          @include transform(translate(-50%, -50%));
+                          padding: 0 10px;
+                        }
+                        &:focus, &:active {
+                          outline: none;
+                        }
+                      }
+                    }
+                    .slick-arrow {
+                      background: setStyle($config, $key, first);
+                      display: block;
+                      font-size: 0;
+                      height: 45px;
+                      padding: 0;
+                      position: absolute;
+                      text-align: center;
+                      top: 0;
+                      width: 66px;
+                      @include transition(all 0.2s ease-in-out);
+                      &:before {
+                        display: inline-block;
+                        font-family: 'FontAwesome';
+                        font-size: 18px;
+                        line-height: 45px;
+                        text-rendering: auto;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                      }
+                      &:hover, &:active {
+                        background: setStyle($config, $key, second);
+                        &:before {
+                          color: white;
+                        }
+                      }
+                      &:focus, &:active {
+                        outline: none;
+                      }
+                      &.slick-prev {
+                        left: -66px;
+                        &:before {
+                          content:"\f060";
+                        }
+                      }
+                      &.slick-next {
+                        right: -66px;
+                        &:before {
+                          content:"\f061";
+                        }
+                      }
+                    }
+                  }
+                }
+                &.step-3 {
+                  border-bottom: none;
+                  .step-action {
+                    padding: 0 18px 0 28px;
+                    .checkbox {
+                      float: left;
+                      padding: 0 20px 0 45px;
+                      width: 100%;
+                      label {
+                        line-height: 140%;
+                        padding: 0;
+                        position: relative;
+                        
+                        &:before {
+                          color: setStyle($config, $key, first);
+                          content: "\f096";
+                          display: block;
+                          font-family: 'FontAwesome';
+                          font-size: 18px;
+                          line-height: 135%;
+                          text-rendering: auto;
+                          -webkit-font-smoothing: antialiased;
+                          -moz-osx-font-smoothing: grayscale;
+                          position: absolute;
+                          top: 0;
+                          left: -25px;
+                        }
+                        span {
+                          color: setStyle($config, $key, second);
+                          @include font_black();
+                        }
+                        
+                      }
+                      input {
+                        height: 0;
+                        visibility: hidden;
+                        width: 0;
+                      }
+                      input:checked + label {
+                        &:before {
+                          content: "\f14a";
+                        }
+                      }
+                      .fa-info-circle {
+                        color: #c5c5c5;
+                        margin-left: 16px;
+                      }
+                        &.error {
+                          label, span, label:before {
+                              color: #ff0000;
+                          }
+                        }
+                        button {
+                            &:focus, &:hover, &:visited, &:active {
+                                outline: none;
+                            }
+                        }
+                    }
+                    
+                    input.email {
+                      background: transparent;
+                      border-bottom: 2px solid #d0dadf;
+                      display: block;
+                      font-size: 18px;
+                      margin: 0 20px 15px;
+                      //max-width: 280px;
+                      border-radius: 0;
+                      padding: 0 0 5px;
+                      text-align: center;
+                      width: calc(100% - 50px);
+                      &:focus, &:active {
+                        outline: none;
+                      }
+                      &.error {
+                        border-bottom-color: #ff0000;
+                        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                          color: #ff0000;
+                        }
+                        &::-moz-placeholder { /* Firefox 19+ */
+                          color: #ff0000;
+                        }
+                        &:-ms-input-placeholder { /* IE 10+ */
+                          color: #ff0000;
+                        }
+                        &:-moz-placeholder { /* Firefox 18- */
+                          color: #ff0000;
+                        }
+                      }
+                      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                        color: #333;
+                      }
+                      &::-moz-placeholder { /* Firefox 19+ */
+                        color: #333;
+                      }
+                      &:-ms-input-placeholder { /* IE 10+ */
+                        color: #333;
+                      }
+                      &:-moz-placeholder { /* Firefox 18- */
+                        color: #333;
+                      }
+                    }
+                    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                      color: #d0dadf;
+                    }
+                    ::-moz-placeholder { /* Firefox 19+ */
+                      color: #d0dadf;
+                    }
+                    :-ms-input-placeholder { /* IE 10+ */
+                      color: #d0dadf;
+                    }
+                    :-moz-placeholder { /* Firefox 18- */
+                      color: #d0dadf;
+                    }
+                    .submit {
+                      background: setStyle($config, $key, first);
+                      color: setStyle($config, $key, sixth);
+                      float: left;
+                      @include font_bold();
+                      line-height: 45px;
+                      padding: 0;
+                      @include transition(all 0.2s ease-in-out);
+                      width: 100%;
+
+                      .generating-text {
+                        display: none;
+                      }
+                      &:hover {
+                        background: setStyle($config, $key, second);
+                        color: white;
+                      }
+                      &:focus, &:active {
+                        outline: none;
+                      }
+                      &.generating {
+                        .generate-text {
+                          display: none;
+                        }
+                        .generating-text {
+                          display: inline-block;
+                        }
+                        @include transition(none);
+                          &:hover {
+                                background: setStyle($config, $key, first);
+                                color: setStyle($config, $key, sixth);
+                          }
+                            webkit-animation:  generating-animation 2s infinite; /* Safari 4+ */
+                            -moz-animation:    generating-animation 2s infinite; /* Fx 5+ */
+                            -o-animation:      generating-animation 2s infinite; /* Opera 12+ */
+                            animation:         generating-animation 2s infinite; 
+                      }
+                      @keyframes generating-animation {
+                          0% {
+                              background: setStyle($config, $key, first);
+                          }
+                          50% {
+                              background: #70c9d6;
+                          }
+                          100% {
+                              background: setStyle($config, $key, first);
+                          }
+                      }
+                    }
+                  }
+                }
+                &.disabled {
+                  &.step {
+                    .step-number, .step-action {
+                      cursor: no-drop;
+                      position: relative;
+                      > * {
+                        opacity: 0.3;
+                      }
+                      &:before {
+                        background: transparent;
+                        content: "";
+                        display: block;
+                        height: 100%;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        position: absolute;
+                        z-index: 1;
+                      }
+                      .slick-arrow, .submit {
+                        background: #bbbbbb;
+                      }
+                      .checkbox {
+                        label {
+                          &:before, span {
+                            color: #424242;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                .upload-photo {
+                  border: 2px solid setStyle($config, $key, first);
+                  @include border-radius(50%);
+                  color: setStyle($config, $key, first);
+                  cursor: pointer;
+                  @include rem-fallback(font-size, 1.5);
+                  height: 50px;
+                  line-height: 46px;
+                  overflow: hidden;
+                  position: relative;
+                  width: 50px;
+                  z-index: 0;
+                  padding-left: 6px !important;
+                  padding-right: 6px !important;
+                  &.file-input {
+                    text-align: center;
+                    &:before {
+                      content:"\f0ee";
+                      display: inline-block;
+                      font-family: 'FontAwesome';
+                      @include rem-fallback(font-size, 1.5);
+                      text-rendering: auto;
+                      -webkit-font-smoothing: antialiased;
+                      -moz-osx-font-smoothing: grayscale;
+                      position: relative;
+                      z-index: 0;
+                    }
+                    input {
+                      cursor: pointer;
+                      height: 46px;
+                      line-height: 46px;
+                      width: 46px;
+                      left: 0;
+                      opacity: 0;
+                      padding: 0;
+                      position: absolute;
+                      top: 0;
+                      z-index: 1;
+                    }
+                  }
+                  &:focus, &:active {
+                    outline: none;
+                  }
+                }
+                .step-number {
+                  border-right: 1px solid setStyle($config, $key, fourth);
+                  min-height: 84px;
+                  @include inlineFlexbox();
+                  @include flex(0 0 120px);
+                  @include flexDirection(column);
+                  @include justifyContent(center);
+                  text-align: center;
+                  text-transform: capitalize;
+                  span {
+                    @include flexDirection(column);
+                    @include inlineFlexbox();
+                    @include flex(0 0 auto);
+                    line-height: 100%;
+                    text-align: center;
+                    width: 100%;
+                  }
+                  strong {
+                    @include inlineFlexbox();
+                    @include flexDirection(column);
+                    @include font_black();
+                    @include rem-fallback(font-size, 2.813);
+                    margin-top: 8px;
+                    @include flex(0 0 auto);
+                    text-align: center;
+                    width: 100%;
+                  }
+                }
+                .step-action {
+                  @include flex(1 1 auto);
+                }
+              }
+            }
+            .founder-generated-photo {
+              left: 0;
+              position: absolute;
+              top: 0;
+              width: 415px;
+              height: 415px;
+              &:after {
+                border-right: 20px solid white;
+                border-bottom: 20px solid transparent;
+                border-top: 20px solid transparent;
+                content: "";
+                height: 0;
+                right: 0;
+                position: absolute;
+                top: 50%;
+                @include transform(translateY(-50%));
+                width: 0;
+                z-index: 1;
+              }
+              img {
+                height: auto;
+                width: 100%;
+                position: absolute;
+              }
+              .image-container {
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 415px;
+                height: 415px;
+                overflow: hidden;
+                @media only screen and (max-width: 480px) {
+                    width: 100%;
+                    padding-bottom: 100%;
+                    height: auto;
+                }
+              }
+              .founder-filters {
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 415px;
+                height: 415px;
+                z-index: 1;
+                .slick-track {
+                    img {
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+              }
+              .image-resizer {
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 415px;
+                height: 415px;
+                z-index: 2;
+                overflow: hidden;
+                @media only screen and (max-width: 480px) {
+                    display: none;
+                }
+                
+                .image-imitation {
+                    position: absolute;
+                }
+              }
+              .custom-message-filter {
+                display: none;
+                position: absolute;
+                right: 0;
+                z-index: 3;
+                bottom: 10px;
+                left: 0;
+                height: 125px;
+                
+                .input-wrapper {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    display: table;
+                    width: 100%;
+                    height: 100%;
+                    
+                    .input-container {
+                        width: 100%;
+                        height: 100%;
+                        display: table-cell;
+                        vertical-align: middle;
+                        text-align: center;
+                        
+                        textarea {
+                            padding: 0px;
+                            background: transparent;
+                            text-align: center;
+                            height: auto;
+                            margin-left: 0px;
+                            margin-right: 0px;
+                            color: #fff;
+                            font-weight: bold;
+                            font-size: 36px;
+                            line-height: 36px;
+                            font-style: italic;
+                            width: 90%;
+                            border: 0 none white;
+                            overflow: hidden;
+                            padding: 0;
+                            outline: none;
+                            float: left;
+                            width: 100%;
+                            resize: none;
+                            &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                              color: #fff;
+                            }
+                            &::-moz-placeholder { /* Firefox 19+ */
+                              color: #fff;
+                            }
+                            &:-ms-input-placeholder { /* IE 10+ */
+                              color: #fff;
+                            }
+                            &:-moz-placeholder { /* Firefox 18- */
+                              color: #fff;
+                            }
+                        }
+                    }
+                }
+              }
+              
+            }
+          }
+          .share-face-of-founder {
+            display: none;
+            float: left;
+            width: 100%;
+            .face-of-founder {
+              @include aspect-ratio(1,1);
+              float: left;
+              margin-right: 10px;
+              max-width: 417px;
+              width: 50%;
+              img {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+              }
+            }
+            .share-tools {
+              @include flexbox();
+              @include flex(1 1 100%);
+              @include flexDirection(column);
+              text-align: center;
+              h2 {
+                @include font_regularItalic();
+                @include rem-fallback(margin-bottom, 0.5);
+              }
+              h3 {
+                @include font_lightItalic();
+              }
+              p {
+                margin: 0 0 10px 0;
+              }
+              .btn {
+                margin: 0 auto 10px auto;
+                max-width: 322px;
+                width: 90%;
+                .fa {
+                  right: initial;
+                  left: 16px;
+                }
+              }
+              ul {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                li {
+                  display: inline-block;
+                  background: white;
+                  @include border-radius(50%);
+                  height: 58px;
+                  overflow: hidden;
+                  width: 58px;
+                  border: 2px solid transparent;
+                  padding: 2px;
+                  @include transition(all 0.2s ease-in-out);
+                  button,a {
+                    display: block;
+                    border: 2px solid setStyle($config, $key, first);
+                    @include border-radius(50%);
+                    color: setStyle($config, $key, first);
+                    cursor: pointer;
+                    @include rem-fallback(font-size, 1.5);
+                    height: 50px;
+                    line-height: 48px;
+                    overflow: hidden;
+                    position: relative;
+                    width: 50px;
+                    z-index: 0;
+                    &:focus, &:active {
+                      outline: none;
+                    }
+                  }
+                  &:hover {
+                    border: 2px solid setStyle($config, $key, first);
+                    button,a {
+                      background: setStyle($config, $key, first);
+                      border-color: transparent;
+                      color: setStyle($config, $key, sixth);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.generated {
+            .generator-tools {
+              display: none;
+            }
+            .share-face-of-founder {
+              display: block;
+            }
+          }
+        }
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+          .generator-box {
+            .generator-tools {
+              .founder-generated-photo {
+                height: 320px;
+                width: 320px;
+                .founder-filters {
+                  height: 320px;
+                  width: 320px;
+                }
+                .image-resizer {
+                  height: 320px;
+                  width: 320px;
+                }
+                .image-container {
+                  height: 320px;
+                  width: 320px;
+                }
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 991px) {
+          .generator-box {
+            .generator-tools {
+              padding-left: 330px;
+              .steps-container {
+                .step {
+                  .step-number {
+                    @include flex(0 0 80px);
+                  }
+                  &.step-1 {
+                    ul {
+                      li {
+                        &:first-child {
+                          display: none;
+                        }
+                      }
+                    }
+                    .upload-photo {
+                      padding: 0;
+                    }
+                  }
+                  &.step-2 {
+                    .step-action {
+                      max-width: 286px;
+                      padding: 19px 56px 19px 66px;
+                      margin: 0 auto;
+                      .message-slider {
+                        .slick-slide {
+                          font-size: 14px;
+                        }
+                      }
+                      .slick-arrow {
+                        width: 46px;
+                        &.slick-prev {
+                          left: -46px;
+                        }
+                        &.slick-next {
+                          right: -46px;
+                        }
+                      }
+                    }
+                  }
+                  &.step-3 {
+                    .step-action {
+                      .checkbox {
+                        padding: 0 0 0 25px;
+                        label {
+                          font-size: 15px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        @media only screen and (min-width: 768px) {
+          .share-face-of-founder {
+            .share-tools {
+              .btn {
+                max-width: 290px;
+              }
+              ul {
+                li {
+                  margin: 0 10px;
+                }
+              }
+            }
+          }
+        }
+        @media only screen and (min-width: 520px) and (max-width: 767px) {
+          margin-top: 30px;
+        }
+        @media only screen and (max-width: 767px) {
+          .container {
+            max-width: 520px;
+          }
+          .generator-box {
+            .generator-tools {
+              padding-left: 0;
+              .title {
+                @include rem-fallback(font-size, 1.625);
+              }
+              .founder-generated-photo {
+                border-bottom: 2px solid setStyle($config, $key, fourth);
+                border-top: 1px solid setStyle($config, $key, fourth);
+                left: initial;
+                height: auto;
+                position: relative;
+                top: initial;
+                width: 100%;
+                img {
+                  width: 100%;
+                }
+                &:after {
+                  content: none;
+                }
+                .founder-filters {
+                  left: initial;
+                  position: relative;
+                  top: initial;
+                  height: auto;
+                  width: 100%;
+                  z-index: 2;
+                  .slick-arrow {
+                    background: rgba(setStyle($config, $key, first), 0.7);
+                    display: block;
+                    font-size: 0;
+                    height: 80px;
+                    padding: 0;
+                    position: absolute;
+                    text-align: center;
+                    top: 50%;
+                    width: 45px;
+                    @include transition(all 0.2s ease-in-out);
+                    @include transform(translateY(-50%));
+                    z-index: 1;
+                    &:before {
+                      display: inline-block;
+                      font-family: 'FontAwesome';
+                      font-size: 48px;
+                      line-height: 80px;
+                      text-rendering: auto;
+                      -webkit-font-smoothing: antialiased;
+                      -moz-osx-font-smoothing: grayscale;
+                    }
+                    &:hover, &:active {
+                      background: setStyle($config, $key, second);
+                      &:before {
+                        color: white;
+                      }
+                    }
+                    &:focus, &:active {
+                      outline: none;
+                    }
+                    &.slick-prev {
+                      left: 0;
+                      &:before {
+                        content:"\f104";
+                      }
+                    }
+                    &.slick-next {
+                      right: 0;
+                      &:before {
+                        content:"\f105";
+                      }
+                    }
+                  }
+                }
+                .image-resizer {
+                  height: 100%;
+                  max-width: 100%;
+                  width: 520px;
+                }
+                .image-container {
+                  height: 100%;
+                  max-width: 100%;
+                  width: 520px;
+                }
+                .user-image {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  z-index: 0;
+                }
+              }
+              .steps-container {
+                .step {
+                  .step-number {
+                    @include flex(0 0 70px);
+                  }
+                  &.step-1 {
+                    ul {
+                      padding: 12px 10px 0 10px;
+                      li {
+                        &:first-child {
+                          display: inline-flex;
+                          line-height: 120%;
+                        }
+                      }
+                    }
+                    .upload-photo {
+                      &.file-input {
+                        &:before {
+                          content: "\f030";
+                        }
+                      }
+                    }
+                  }
+                  &.step-2 {
+                    .step-action {
+                      padding: 19px;
+                      max-width: 100%;
+                      width: calc(100% - 70px);
+                      .message-slider {
+                        .slick-slide {
+                          @include rem-fallback(font-size, 1);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .generator-box {
+            .share-face-of-founder {
+              .face-of-founder {
+                margin-bottom: 20px;
+                max-width: 100%;
+                width: 100%;
+                img {
+                  max-width: 100%;
+                  width: 100%;
+                }
+              }
+              .share-tools {
+                max-width: 100%;
+                width: 100%;
+              //   ul {
+              //     li {
+              //       margin: 0 10px;
+              //     }
+              //   }
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 479px) {
+          .generator-box {
+            padding: 0;
+            .generator-tools {
+              .steps-container {
+                .step {
+                  &.step-1 {
+                    ul {
+                      padding-top: 20px;
+                      li {
+                        &:first-child {
+                          font-size: 14px;
+                        }
+                        &:not(:first-child) {
+                          height: 48px;
+                          width: 48px;
+                        }
+                      }
+                    }
+                    .upload-photo {
+                      height: 40px !important;
+                      line-height: 36px !important;
+                      width: 40px !important;
+                      padding: 0;
+                      .fa {
+                        @include rem-fallback(font-size, 1.25);
+                      }
+                      &.file-input {
+                        input {
+                          height: 36px;
+                          line-height: 36px;
+                          width: 36px;
+                        }
+                        &:before {
+                          @include rem-fallback(font-size, 1.25);
+                        }
+                      }
+                    }
+                  }
+                  &.step-3 {
+                    .step-action {
+                      padding: 0 10px 20px 18px;
+                      .checkbox {
+                        label {
+                          font-size: 14px;
+                        }
+                        .fa-info-circle {
+                          margin-left: 5px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

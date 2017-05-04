@@ -1,0 +1,88 @@
+.featured-reviewers{
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background: #0097a7;
+        padding: 100px 0 0;
+        float: left;
+        position: relative;
+        width: 100%;
+        h2{
+          text-align: center;
+          width: 100%;
+          float: left;
+          margin-bottom: 50px;
+          font-size: 40px;
+          font-style: italic;
+          color: #FFF;
+          font-weight: bold;
+        }
+        .section-devider {
+          top: -30px;
+          height: 120px;
+          &:before {
+            @include transform(translate(-50%, 50px) rotate(2deg));
+            top: -70px;
+            height: 100px;
+          }
+          &:after {
+            @include transform(translate(-50%, 50px) rotate(2deg));
+            top: -80px;
+            height: 100px;
+          }
+        }
+        ul.reviewers-container{
+          padding: 0px;
+          float: left;
+          width: 100%;
+          @media only screen and (max-width: 991px){
+            display: block;
+            float: none;
+            margin: 0 auto;
+            max-width: 290px;
+          }
+          li{
+            list-style: none;
+            margin-bottom: 30px;
+            .container-image{
+              .wrapper{
+                .wrapper-inner{
+                  text-align: center;
+                  img{
+                    border-radius: 100%;
+                    width: 260px;
+                    height: 260px;
+                    @media (max-width: 1199px) and (min-width: 768px){
+                      width: 100%;
+                      height: auto;
+                    }
+                  }
+                }
+              }
+            }
+            h4{
+              color: #FFF;
+              font-size: 24px;
+              float: left;
+              width: 100%;
+              text-align: center;
+              font-style: italic;
+              margin: 10px 0px 0px;
+              line-height: 24px;
+            }
+            p{
+              color: #80deea;
+              float: left;
+              width: 100%;
+              text-align: center;
+              font-style: italic;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

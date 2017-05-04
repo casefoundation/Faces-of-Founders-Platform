@@ -1,0 +1,244 @@
+// REM SIZES
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@mixin rem-fallback($property, $values...) {
+    $max: length($values);
+    $pxValues: '';
+    $remValues: '';
+
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $pxValues: #{$pxValues + $value*16}px;
+
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+        }
+    } 
+
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $remValues: #{$remValues + $value}rem;
+
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    } 
+  
+    #{$property}: $pxValues; 
+    #{$property}: $remValues; 
+}
+
+// BROWSER PREFIX
+@mixin prefix($property, $value) {
+    -webkit-#{$property}: #{$value};
+      -khtml-#{$property}: #{$value};
+        -moz-#{$property}: #{$value};
+          -ms-#{$property}: #{$value};
+             -o-#{$property}: #{$value};
+                  #{$property}: #{$value};
+}
+
+// FLEXBOX
+@mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+@mixin inlineFlexbox() {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+@mixin flex($values) {
+    -webkit-box-flex: $values;
+    -moz-box-flex:  $values;
+    -webkit-flex:  $values;
+    -ms-flex:  $values;
+    flex:  $values;
+}
+
+@mixin flexBasis($value) {
+    -webkit-flex-basis: $value;
+    -ms-flex-preferred-size: $value;
+    flex-basis: $value;
+}
+
+@mixin alignItems($alignment) {
+    -webkit-box-align: $alignment;
+    -webkit-align-items: $alignment;
+    -ms-flex-align: $alignment;
+    align-items: $alignment;
+}
+
+@mixin alignSelf($aligself) {
+    -webkit-align-self: $aligself;
+    align-self: $aligself;
+}
+
+@mixin justifyContent($justify) {
+    -webkit-box-pack: $justify;
+    -webkit-justify-content: $justify;
+    -ms-flex-pack: $justify;
+    justify-content: $justify;
+}
+
+@mixin flexDirection($direction) {
+    -webkit-box-orient: $direction;
+    -webkit-box-direction: $direction;
+    -webkit-flex-direction: $direction;
+    -ms-flex-direction: $direction;
+    flex-direction: $direction;
+}
+
+// BORDER RADIUS
+@mixin border-radius($radius...) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+}
+
+// TRANSITIONS
+@mixin transition($args...) {
+    -webkit-transition: $args;
+       -moz-transition: $args;
+        -ms-transition: $args;
+         -o-transition: $args;
+            transition: $args;
+}
+
+// TRANSFORM
+@mixin transform($transform) {
+    -webkit-transform: $transform;
+       -moz-transform: $transform;
+        -ms-transform: $transform;
+         -o-transform: $transform;
+            transform: $transform;
+}
+
+// BOX SHADOWS
+@mixin box-shadow( $horiz : 0 , $vert : 0 , $blur : 16px , $spread : 0px , $color : #000000 ){
+    -webkit-box-shadow: $horiz $vert $blur $spread $color;
+    -moz-box-shadow: $horiz $vert $blur $spread $color;
+    box-shadow: $horiz $vert $blur $spread $color;
+}
+
+// OPACITY
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// CLEAR FIX
+%clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// BACKGROUND GRADIENT: TOP TO BOTTOM
+@mixin bg-gradient-t2b($start-colour, $end-colour) {
+    background-color: $start-colour;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($start-colour), to($end-colour));
+    background-image: -webkit-linear-gradient(top, $start-colour, $end-colour);
+    background-image:    -moz-linear-gradient(top, $start-colour, $end-colour);
+    background-image:     -ms-linear-gradient(top, $start-colour, $end-colour);
+    background-image:      -o-linear-gradient(top, $start-colour, $end-colour);
+    background-image:         linear-gradient(top, $start-colour, $end-colour);
+    filter:            progid:DXImageTransform.Microsoft.gradient(start-colourStr='#{$start-colour}', end-colourStr='#{$end-colour}');
+}
+// usage
+// @include bg-gradient-t2b(start colour, end colour);
+
+// BACKGROUND GRADIENT: LEFT TO RIGHT
+@mixin bg-gradient-l2r($start-colour, $end-colour) {
+    background-color: $start-colour;
+    background-image: -webkit-gradient(linear, left top, right top, from($start-colour), to($end-colour));
+    background-image: -webkit-linear-gradient(left, $start-colour, $end-colour);
+    background-image:    -moz-linear-gradient(left, $start-colour, $end-colour);
+    background-image:     -ms-linear-gradient(left, $start-colour, $end-colour);
+    background-image:      -o-linear-gradient(left, $start-colour, $end-colour);
+    background-image:         linear-gradient(left, $start-colour, $end-colour);
+    filter:            progid:DXImageTransform.Microsoft.gradient(start-colourStr='#{$start-colour}', end-colourStr='#{$end-colour}', gradientType='1');
+}
+// usage
+// @include bg-gradient-l2r(start colour, end colour);
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    &:before{
+        display: block;
+        content: " ";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    > .grid-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@mixin blendy($img, $color, $blend) {
+  background-image: url('../src/img/#{$img}');
+  background-color: $color;
+  background-blend-mode: $blend;
+}
+
+// Font Family Mixins
+@mixin font_light {
+  font-family: $font-family;
+  font-weight: 300;
+  font-style: normal; 
+}
+@mixin font_lightItalic {
+  font-family: $font-family;
+  font-weight: 300;
+  font-style: italic; 
+}
+@mixin font_regular {
+  font-family: $font-family;
+  font-weight: 400;
+  font-style: normal; 
+}
+@mixin font_regularItalic {
+  font-family: $font-family;
+  font-weight: 400;
+  font-style: italic; 
+}
+@mixin font_bold {
+  font-family: $font-family;
+  font-weight: 700;
+  font-style: normal; 
+}
+@mixin font_boldItalic {
+  font-family: $font-family;
+  font-weight: 700;
+  font-style: italic; 
+}
+@mixin font_black {
+  font-family: $font-family;
+  font-weight: 900;
+  font-style: normal; 
+}
+@mixin font_blackItalic {
+  font-family: $font-family;
+  font-weight: 900;
+  font-style: italic; 
+}

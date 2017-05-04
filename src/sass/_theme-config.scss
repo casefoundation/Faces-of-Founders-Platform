@@ -1,0 +1,55 @@
+// GLOBAL THEMES
+// The value is the name and the class, and it must be appended to the <html> to assign the desired theme
+$theme: (
+	theme1: ie-csl-theme
+);
+
+// GETTING THEME VALUES
+// This is a function for a quick way to get values of the modules
+// $map: Define the name of the map where all values come from.
+// $object: In this case the key for the theme.
+// $style: The property for the style which is needed.
+@function setStyle($map, $object, $style) {
+	@if map-has-key($map, $object) {
+		@return map-get(map-get($map, $object), $style);
+	}
+	@warn "The key ´#{$object} is not available in the map.";
+	@return null;
+}
+
+// Each theme gets an object and the name must be the same key as you define in $theme: if not you will get an error.
+$config: (
+	theme1: (
+		first: #cfcfcf,
+		second: #a0a0a0,
+		third: #5f5f5f,
+		fourth: #eaeaea,
+		fifth: #f3f3f3,
+		sixth: #333333,
+		shadow: rgba(#000, 0.1)
+	)
+);
+
+// EXAMPLE OF A LOOP
+// We use @each with $key and $value as expected values which we get from the Map $theme.
+// .m-button {
+// 	@each $key, $value in $theme {
+// 		@if map-has-key($config, $key) {
+// 			.#{$value} & {
+// 				background: setStyle($config, $key, background);
+// 				color: setStyle($config, $key, color);
+// 			}
+// 		} @else {
+// 			@warn "The key ´#{$key} isn’t defined in the map $config´"
+// 		}
+// 	}
+// }
+// THE ABOVE WILL OUTPUT:
+// .theme-light .m-button {
+// 	background: #f2f2f2;
+// 	color: #000;
+// }
+// .theme-dark .m-button {
+// 	background: #666;
+// 	color: #fff;
+// }

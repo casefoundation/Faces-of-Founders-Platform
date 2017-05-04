@@ -1,0 +1,33 @@
+.error404 {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        .fa-times-circle {
+          color: setStyle($config, $key, second);
+          @include rem-fallback(font-size, 12);
+        }
+        .btn {
+          max-width: 290px;
+        }
+        .col-sm-6 {
+          min-height: 350px;
+          padding: 80px 0;
+        }
+        @media only screen and (max-width: 767px) {
+          .col-sm-6 {
+            min-height: initial;
+            padding: 30px 0;
+            text-align: center;
+          }
+          .btn {
+            display: block;
+            float: none;
+            margin: 0 auto;
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

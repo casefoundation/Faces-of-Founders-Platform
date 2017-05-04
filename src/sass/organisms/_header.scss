@@ -1,0 +1,113 @@
+header.header {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        // Front-page Header
+        float: left;
+        width: 100%;
+        background: #262323;
+        .header-frontpage {
+          display: block;
+          margin: 0 auto;
+          padding: 25px 15px;
+          width: 935px;
+          overflow: hidden;
+          .header-logo {
+            float: left;
+            max-width: 50%;
+            width: 220px;
+            .logo {
+              width: 100%;
+            }
+          }
+          .header-intro {
+            float: left;
+            max-width: 490px;
+            p {
+              color: white;
+              @include rem-fallback(font-size, 1.3);
+              line-height: 30px;
+            }
+            > * {
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+        .btn {
+          &.back {
+            position: fixed;
+            display: block;
+            right: 0;
+            top: 456px;
+            z-index: 3;
+            max-width: 150px;
+            line-height: 140%;
+            text-align: center;
+            padding: 12px 0 12px 30px;
+            @include transition(all 0.2s ease-in-out);
+            .fa {
+              right: initial;
+              left: 16px;
+            }
+            &:hover {
+              background: setStyle($config, $key, sixth);
+              color: setStyle($config, $key, first);
+            }
+            @media only screen and (max-width: 767px) {
+              font-size: 32px;
+              height: 50px;
+              top: 45%;
+              max-width: 40px;
+              line-height: 50px;
+              padding: 0;
+              @include transform(transitionY(-50%));
+            }
+          }
+        }
+        @media only screen and (min-width: 768px) {
+          .header-frontpage {
+            .header-intro {
+              padding-left: 25px;
+            }
+          }
+        }
+        @media only screen and (max-width: 991px) {
+          .header-frontpage {
+            max-width: 90%;
+            .header-intro {
+              max-width: 325px;
+              p {
+                @include rem-fallback(font-size, 1);
+                line-height: 24px;
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 767px) {
+          .header-frontpage {
+            width: 520px;
+            max-width: 90%;
+            .header-logo, .header-intro {
+              max-width: 100%;
+              width: 100%;
+            }
+            .header-logo {
+              .logo {
+                display: block;
+                margin: 0 auto 30px;
+                max-width: 405px;
+              }
+            }
+            .header-intro {
+              text-align: center;
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

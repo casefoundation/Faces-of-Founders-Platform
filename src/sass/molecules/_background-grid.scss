@@ -1,0 +1,52 @@
+.background-grid {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background: setStyle($config, $key, second) url('../src/img/header-grid-bg.png') no-repeat;
+        background-size: 1500px auto;
+        background-position: center top;
+        left: 0;
+        height: 627px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: block;
+        z-index: -1;
+        &:before {
+          background: setStyle($config, $key, shadow);
+          bottom: 0;
+          content: "";
+          display: block;
+          height: 165px;
+          left: 50%;
+          position: absolute;
+          width: 150%;
+          @include transform(translate(-50%, 40px) rotate(3deg));
+        }
+        &:after {
+          background: setStyle($config, $key, fifth);
+          bottom: 0;
+          content: "";
+          display: block;
+          height: 165px;
+          left: 50%;
+          position: absolute;
+          width: 150%;
+          @include transform(translate(-50%, 50px) rotate(3deg));
+        }
+        @media only screen and (max-width: 767px) {
+          background-size: auto 320px;
+          height: 410px;
+        }
+        @media only screen and (max-width: 520px) {
+          &:after {
+            background: white;
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

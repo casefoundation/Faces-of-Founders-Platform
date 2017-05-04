@@ -1,0 +1,147 @@
+.sidebar-menu{
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+            width: 17.069%;
+            background: #0097a7;
+            display: table-cell;
+            height: 100%;
+            vertical-align: top;
+            -webkit-transition: all 300ms ease-in-out 0s;
+            -moz-transition: all 300ms ease-in-out 0s;
+            transition: all 300ms ease-in-out 0s;
+              @media (max-width: 767px){
+                background: transparent;
+                width: 1px;
+                z-index: 9999;
+                position: fixed!important;
+                top: 0px!important;
+              }
+            nav.navbar.dash-nav{
+              @media (max-width: 767px){
+                position: fixed!important;
+                width: 100%;
+                top:0!important;
+                left: 0px;
+                background: #0097a7;
+              }
+              background: transparent;
+              border: 0px;
+              .navbar-toggle{
+                border: 0px;
+                &:hover{
+                  background-color: transparent;
+                }
+                &:focus{
+                  background-color: transparent;
+                }
+                .icon-bar{
+                  background-color: #FFF;
+                }
+              }
+              .navbar-collapse{
+                padding-left: 0px;
+                padding-right: 0px;
+                border-color: #007680;
+              }
+            }
+            // @media (max-width: 1024px){
+            //   width: 100%;
+            //   float: left;
+            //   display: block;
+            // }
+            h2{
+              text-align: center;
+              padding: 40px 0px;
+              margin: 0px;
+              color: #FFF;
+              font-size: 24px;
+            }
+            ul.menu{
+              padding: 0px;
+              text-align: center;
+              border: 0px;
+              li.item-menu{
+                list-style: none;
+                display: inline-block;
+                width: 85%;
+                max-width: 250px;
+                height: 50px;
+                margin-bottom: 10px;
+                float: none;
+
+                // @media (max-width: 1024px){
+                //   width: 20%;
+                // }
+                @media (max-width: 1199px){
+                  width: 100%;
+                }
+                @media (max-width: 767px){
+                  width: 100%;
+                  display: block;
+                  float: left;
+                  max-width: 100%;
+                  border-bottom: 1px solid #FFF;
+                  margin-bottom: 0px;
+                  &:last-child{
+                    border-bottom: 0px;
+                  }
+                }
+                a{
+                  width: 100%;
+                  height: 100%;
+                  border: 2px solid #FFF;
+                  text-align: center;
+                  color: #FFF;
+                  display: block;
+                  line-height: 30px;
+                  font-size: 16px;
+                  font-weight: bold;
+                  border-radius: 0px;
+                    @media (max-width: 1199px){
+                      font-size: 14px;
+                    }
+                    @media (max-width: 991px){
+                      font-size: 12px;
+                      padding: 10px 0px;
+                    }
+                  @media (max-width: 767px){
+                    border-bottom: 1px solid #FFF;
+                    border:0px;
+                  }
+                  &:focus {
+                    outline: none;
+                    background: none;
+                  }
+                  &.download-csv {
+                    i {
+                      margin-right: 10px;
+                    }
+                  }
+                }
+                &:hover{
+                  a{
+                    background-color: #ffffff;
+                    color: #000;
+                    border-color: #ffffff;
+                  }
+                }
+
+                &.active{
+                  a{
+                    background-color: #ffffff;
+                    color: #000;
+                    border-color: #ffffff;
+                  }
+                }
+                
+              }
+            }
+
+
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

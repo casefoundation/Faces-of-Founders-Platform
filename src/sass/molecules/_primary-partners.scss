@@ -1,0 +1,154 @@
+.primary-partners{
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background: #00838f url('../src/img/bg-primary-partners.png') top center no-repeat;
+        background-size: cover;
+        padding: 100px 0px 50px;
+        float: left;
+        position: relative;
+        width: 100%;
+        &:before {
+          background: setStyle($config, $key, shadow);
+          content: "";
+          height: 10px;
+          bottom: 0;
+          left: 0;
+          position: absolute;
+          width: 100%;
+          z-index: 1;
+        }
+        h2{
+          text-align: center;
+          width: 100%;
+          float: left;
+          margin-bottom: 50px;
+          font-size: 40px;
+          font-style: italic;
+          color: #FFF;
+        }
+        .section-devider {
+          &:before {
+            background: setStyle($config, $key, shadow);
+            @include transform(translate(-50%, 50px) rotate(-1deg));
+          }
+          &:after {
+            background: white;
+            border-bottom: 1px solid white;
+            @include transform(translate(-50%, 50px) rotate(-1deg));
+          }
+        }
+        ul.partners-container{
+          padding: 0px;
+          @media only screen and (max-width: 767px){
+            display: block;
+            float: none;
+            margin: 0 auto;
+            max-width: 450px;
+          }
+          li{
+            list-style: none;
+            margin-bottom: 20px;
+            .partner-item{
+              background: #FFF;
+              float: left;
+              width: 100%;
+              overflow: hidden;
+              position: relative;
+              .container-image{
+                height: 265px;
+                position: relative;
+                float: left;
+                width: 100%;
+                overflow: hidden;
+                .wrapper{
+                  width: 100%;
+                  height: 100%;
+                  display: table;
+                  .wrapper-inner{
+                    width: 100%;
+                    height: 100%;
+                    display: table-cell;
+                    vertical-align: middle;
+                    text-align: center;
+                    img{
+                      max-width: 100%;
+                      @media (max-width: 1199px) and (min-width: 768px){
+                        width: 100%;
+                      }
+                    }
+                  }
+                }
+                &:before{
+                  bottom: 0;
+                	left: 20%;
+                	border: solid transparent;
+                	content: " ";
+                	height: 0;
+                	width: 0;
+                	position: absolute;
+                	pointer-events: none;
+                  border-color: rgba(136, 183, 213, 0);
+                	border-bottom-color: #0097a7;
+                	border-width: 10px;
+                	margin-left: -10px;
+                }
+              }
+              h3{
+                width: 100%;
+                float: left;
+                text-align: center;
+                padding: 20px;
+                color: #FFF;
+                background: #0097a7;
+                font-style: italic;
+                font-size: 24px;
+                margin-bottom: 0px;
+                position: relative;
+                &:after {
+                  content: "";
+                  position: absolute;
+                  left: 0px;
+                  bottom: -18px;
+                  width: 0;
+                  height: 0;
+                  border-style: solid;
+                  border-top: 15px solid setStyle($config, $key, second);
+                  border-left: 0 solid transparent;
+                  border-right: 375px solid transparent;
+                }
+              }
+              p{
+                font-size: 18px;
+                padding: 20px;
+                margin-bottom: 0px;
+                float: left;
+                width: 100%;
+              }
+              .social-items{
+                float: left;
+                width: 100%;
+                padding: 0px 20px 20px;
+                ul{
+                  padding: 0px;
+                  text-align: right;
+                  li{
+                    list-style: none;
+                    display: inline-block;
+                    margin: 0px 10px;
+                    a{
+                      color: #80deea;
+                      font-size: 18px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

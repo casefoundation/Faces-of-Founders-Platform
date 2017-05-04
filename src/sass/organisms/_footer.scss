@@ -1,0 +1,136 @@
+.footer {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background: #262323;
+        border-top: 10px solid rgba(#000, 0.1);
+        color: #ffffff;
+        float: left;
+        width: 100%;
+        a {
+          color: #ffffff;
+        }
+        .footer-col {
+          padding-bottom: 70px;
+          padding-top: 55px;
+        }
+        .footer-logo {
+          float: left;
+          margin-bottom: 30px;
+          text-align: center;
+          width: 100%;
+          img {
+            display: inline-block;
+            max-width: 100%;
+          }
+        }
+        .social-media {
+          display: block;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+          width: 100%;
+          li {
+            border: 2px solid setStyle($config, $key, second);
+            @include border-radius(50%);
+            display: inline-block;
+            list-style: none;
+            height: 50px;
+            margin: 0 10px;
+            text-align: center;
+            width: 50px;
+            a {
+              color: setStyle($config, $key, second);
+              cursor: pointer;
+              font-size: 24px;
+              line-height: 50px;
+              @include transition(all 0.2s ease-in-out);
+            }
+            &:hover {
+              cursor: pointer;
+              border-color: #ffffff;
+              @include transition(all 0.2s ease-in-out);
+              a {
+                color: #ffffff;
+              }
+            }
+          }
+        }
+        .footer-nav {
+          background: rgba(#000, 0.06);
+          text-align: center;
+          padding: 40px 0;
+          h6 {
+            border-bottom: 2px solid setStyle($config, $key, second);
+            color: setStyle($config, $key, second);
+            display: inline-block;
+            padding-bottom: 4px;
+          }
+          ul.menu {
+            margin-bottom: 50px;
+            padding: 0;
+            li {
+              display: block;
+              list-style: none;
+              margin-bottom: 10px;
+              &:last-child {
+                margin-bottom: 0;
+              }
+              a {
+                border-bottom: 2px solid transparent;
+                padding-bottom: 4px;
+                &:hover {
+                  border-bottom: 2px solid setStyle($config, $key, second);
+                  color: setStyle($config, $key, second);
+                }
+              }
+              &.current_page_item {
+                a {
+                  border-bottom: 2px solid setStyle($config, $key, second);
+                  color: setStyle($config, $key, second);
+                }
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 991px) {
+          .container {
+            width: 100%;
+          }
+          .social-media {
+            li {
+              height: 40px;
+              margin: 0 2px;
+              width: 40px;
+              a {
+                font-size: 18px;
+                line-height: 38px;
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 767px) {
+          .footer-logo {
+            img {
+              max-width: 190px;
+            }
+          }
+        }
+        @media only screen and (max-width: 479px) {
+          .partners-logos {
+            .partner-section {
+              max-width: 280px;
+              margin: 0 auto;
+              .logo {
+                width: 100% !important;
+                padding: 0 15px !important;
+              }
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

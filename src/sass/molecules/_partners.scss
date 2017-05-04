@@ -1,0 +1,69 @@
+.partners{
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background: #f3f3f3;
+        padding: 50px 0px 0;
+        h2{
+          text-align: center;
+          width: 100%;
+          float: left;
+          margin-bottom: 50px;
+          font-size: 40px;
+          font-style: italic;
+          font-weight: bold;
+          color: #5b5b5b;
+        }
+        ul.partners-container{
+          padding: 0px;
+          float: left;
+          width: 100%;
+          @media only screen and (max-width: 767px){
+            display: block;
+            float: none;
+            margin: 0 auto;
+            max-width: 450px;
+          }
+          li{
+            list-style: none;
+            margin-bottom: 30px;
+            
+            .partner-item{
+              float: left;
+              width: 100%;
+              height: 100%;
+              padding: 20px;
+              background: #FFF;
+              height: 260px;
+              min-height: 260px;
+              display: block;
+              cursor: pointer;
+              .wrapper{
+                width: 100%;
+                height: 100%;
+                display: table;
+                .wrapper-inner{
+                  width: 100%;
+                  height: 100%;
+                  display: table-cell;
+                  vertical-align: middle;
+                  text-align: center;
+                  img{
+                    width: 100%;
+                    @media (max-width: 767px){
+                      width: auto;
+                      height: auto;
+                      max-width: 100%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

@@ -1,0 +1,290 @@
+.page-template-dashboard {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        .sidebar-menu nav.navbar.dash-nav{
+          margin-top: 45px; 
+        }
+        footer{
+          position: relative;
+          @media (min-width: 768px){
+            padding-left: 17.069%;
+          }
+          &:before{
+            width: 17.069%;
+            content: '';
+            position: absolute;
+            left: 0px;
+            height: 100%;
+            background: #0097a7;
+            top: -15px;
+            @media (max-width: 767px){
+                display: none;
+            }
+          }
+        }
+        .hero{
+          @media (max-width: 767px){
+            margin-top: 40px;
+          }
+        }
+        .btn.back{
+          display: none;
+        }
+        .title-text{
+          display: none;
+        }
+        .welcome-msj{
+          display: block;
+        }
+        position: relative;
+        background: #FFF;
+        .main-content-container{
+          padding: 0px;
+          @media (min-width: 768px){
+            padding-left: 17.069%;
+          }
+          &.getting-data {
+            a.orange {
+              i {
+                display: block !important;
+              }
+            }
+          }
+          .no-reviews, .no-judges {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 15px;
+            text-align: center;
+            .auto-assign-container {
+              padding-top: 20px;
+              span {
+                display: block;
+                color: #bcbcbc;
+                text-align: center;
+                margin-bottom: 10px;
+              }
+              input {
+                display: block;
+                border: 1px solid #0097a7;
+                margin: 0 auto;
+              }
+              .orange {
+                background: #fb7343;
+                border-color: #fb7343;
+                color: #ffffff;
+                position: relative;
+                text-align: center;
+                color: #FFF;
+                display: block;
+                max-width: 207px;
+                line-height: 52px;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 0px;
+                margin: 0 auto;
+                margin-top: 20px;
+                i {
+                  display: none;
+                  position: absolute;
+                  right: 5px;
+                  top: 13px;
+                  font-size: 20px;
+                }
+              }
+            }
+          }
+
+          .category-menu{
+            width: 100%;
+            float: left;
+            padding: 20px;
+            background: #00838f;
+            border-top: 10px solid #007680;
+            @media (max-width: 1024px){
+              width: 100%;
+              display: block;
+              float: left;
+            }
+            h3{
+              float: left;
+              font-size: 36px;
+              margin-bottom: 0px;
+              color: #FFF;
+              font-style: italic;
+              @media (max-width: 991px){
+                width: 100%;
+                text-align: center;
+              }
+            }
+            ul{
+              float: right;
+              text-align: center;
+              margin-bottom: 0px;
+              padding-right: 10%;
+              padding-left: 0px;
+              padding-top: 5px;
+                @media (max-width: 991px){
+                  padding-right: 0px;
+                  float: left;
+                  width: 100%;
+                }
+              li{
+                display: inline-block;
+                margin: 0px 20px;
+                font-size: 18px;
+                float: none;
+                color: #FFF;
+                @media (max-width: 991px){
+                  margin: 0px 0px;
+                  font-size: 12px;
+                }
+                a{
+                  color: #FFF;
+                  padding: 5px;
+                  font-size: 18px;
+                  @media (max-width: 991px){
+                    font-size: 12px;
+                  }
+                  &.active{
+                    background: #80deea;
+                    color: #000;
+                  }
+                  &:hover{
+                    background: #80deea;
+                    color: #000;
+                  }
+                }
+              }
+            }
+          }
+          .tab-content{
+            width: 82.931%;
+            float: none;
+            display: table-cell;
+            height: 100%;
+            @media (max-width: 1024px){
+              width: 100%;
+              display: block;
+              float: left;
+            }
+            .table-item{
+              float: left;
+              width: 100%;
+              @media (max-width: 991px){
+                overflow: scroll;
+              }
+              .table-item-container {
+                float: left;
+                width: 100%;
+                padding: 20px;
+                .loading-table {
+                  display: none;
+                  td {
+                    padding: 30px 0;
+                  }
+                }
+              }
+              table{
+                  tr{
+                    text-align: center;
+                    th{
+                      background: #0097a7;
+                      border: 2px solid #FFF;
+                      padding: 12px 5px;
+                      text-align: center;
+                      color: #FFF;
+                      font-size: 16px;
+                      position: relative;
+                      a{
+                        color: #FFF;
+                        font-weight: bold;
+                        width: 100%;
+                        display: block;
+                        float: left;
+                        position: relative;
+                        font-style: italic;
+                        &:before{
+                          content:"\f0d8";
+                          position: absolute;
+                          right: 10px;
+                          font-family: 'FontAwesome';
+                          font-style: normal;
+                          color: #80deea;
+                          @media (max-width: 991px){
+                            display: none;
+
+                          }
+                        }
+                      }
+                      &.header {
+                        cursor: pointer;
+                        &:after {
+                          content: "\f0dc";
+                          font-family: 'FontAwesome';
+                          color: #80deea;
+                          position: absolute;
+                          right: 10px;
+                          font-style: normal;
+                          font-weight: normal;
+                        }
+                        &.headerSortDown:after {
+                          content: "\f0dd";
+                        }
+                        &.headerSortUp:after {
+                          content: "\f0de";
+                        }
+                      }
+                      &.reassign-row {
+                        cursor: pointer;
+                      }
+                    }
+                    td{
+                      border: 2px solid #FFF;
+                      padding: 5px;
+
+                    }
+                    &:nth-child(even){
+                        color: #000;
+                        background: #ececec;
+                    }
+                    &:nth-child(odd){
+                        color: #000;
+                        background: #f4f4f4;
+                    }
+                    &.recused-row, &.reassign-row {
+                      cursor: pointer;
+                      &:hover {
+                        background: #dadada;
+                      }
+                    }
+                    &.completed-row{
+                      border: 1px solid red;
+                      td{
+                        color: #b3b3b3;
+                        &:before{
+                          content: '';
+                        }
+                        &:first-child{
+                          &:before{
+                            content: "\f00c";
+                            font-family: 'FontAwesome';
+                            margin-right: 5px;
+                          }
+                        }
+                      }
+                    }
+                  }
+              }
+              &:not(.active){
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

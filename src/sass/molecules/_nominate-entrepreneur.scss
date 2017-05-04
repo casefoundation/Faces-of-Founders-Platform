@@ -1,0 +1,180 @@
+.nominate-entrepreneur {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+        float: left;
+        margin-top: 40px;
+        position: relative;
+        width: 100%;
+        &:before {
+          background: #4f4f4f;
+          content: "";
+          height: 100%;
+          left: 0;
+          opacity: 0.6;
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
+        .container {
+          position: relative;
+          z-index: 1;
+        }
+        article {
+          min-height: 450px;
+          position: relative;
+          .article-container {
+            display: block;
+            width: calc(100% - 30px);
+          }
+          h2 {
+            border-bottom: 1px solid rgba(#ffffff, 0.2);
+            @include font_regularItalic();
+            @include rem-fallback(font-size, 2.5);
+            padding-bottom: 18px;
+            line-height: 100%;
+            a {
+              color: #fff;
+              &:hover, &:focus {
+                color: #fff;
+              }
+            }
+          }
+          p {
+            @include rem-fallback(font-size, 1.375);
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+        .form-container {
+          .newsletter-form {
+            padding: 50px 0;
+            position: relative;
+            width: 100%;
+            form {
+              float: left;
+              width: 100%;
+              label {
+                  &.error {
+                    color: #ffc81f;
+                    @include rem-fallback(font-size, .9);
+                    @include font_bold();
+                    margin-bottom: 0;
+                }
+              }
+              input {
+                height: 35px;
+              }
+              .btn {
+                line-height: 35px;
+                margin-top: 15px;
+                &:hover {
+                  background: #353535;
+                }
+                &.processing {
+                    display:none;
+                    &:hover {
+                        background: #76d8e5;
+                        color: #000;
+                    }
+                }
+                i.fa-spin {
+                    margin-top: -8px;
+                    font-size: 15px;
+                }
+              }
+            }
+            
+            .thank-you-entrepeneur {
+                display: none;
+                text-align: center;
+                float: left;
+                width: 100%;
+                padding: 100px 0;
+                
+                h3 {
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-weight: 400;
+                    font-style: italic;
+                    font-size: 40px;
+                    font-size: 2.5rem;
+                }
+                p {
+                    font-size: 18px;
+                    font-size: 1.125rem;
+                    margin-bottom: 10px;
+                    width: 100%;
+                }
+            }
+          }
+        }
+        @media only screen and (min-width: 1200px) {
+          .container {
+            width: 1124px;
+          }
+        }
+        @media only screen and (min-width: 992px) {
+          article {
+            .article-container {
+              @include transform(translateY(-50%));
+              position: absolute;
+              top: 50%;
+            }
+          }
+          &:after {
+            background: setStyle($config, $key, second);
+            content: " ";
+            display: block;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            z-index: 0;
+          }
+          .form-container {
+            overflow: hidden;
+            .newsletter-form {
+              float: left;
+              padding: 116px 0;
+            }
+          }
+        }
+        @media only screen and (max-width:991px) {
+          .container {
+            width: 100%;
+          }
+          article {
+            display: block;
+            margin: 0 auto;
+            max-width: 520px;
+            padding: 50px 30px;
+          }
+          .form-container {
+            background: setStyle($config, $key, second);
+            overflow: hidden;
+            padding: 0 30px;
+            .newsletter-form {
+              display: block;
+              margin: 0 auto;
+              max-width: 520px;
+              overflow: hidden;
+            }
+          }
+        }
+        @media only screen and (max-width:991px) {
+          .article-container {
+            padding-top: 40px;
+          }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

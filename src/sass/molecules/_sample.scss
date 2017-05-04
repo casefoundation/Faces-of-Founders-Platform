@@ -1,0 +1,14 @@
+.sample {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        
+        // @media only screen and (max-width: 991px) {
+          
+        // }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

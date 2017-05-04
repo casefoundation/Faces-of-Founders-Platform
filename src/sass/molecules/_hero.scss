@@ -1,0 +1,96 @@
+.hero {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        .welcome-msj{
+          text-transform: initial;
+          display: none;
+        }
+        .welcome-msj-judge{
+          text-transform: initial;
+          display: none;
+          @media (max-width: 480px){
+            width: 100%;
+            float: left;
+          }
+          .pending-msj{
+            font-style: normal;
+            font-size: 28px;
+            span{
+              font-style: italic;
+              color: #80deea;
+              font-weight: bold;
+              @media (max-width: 480px){
+                width: 100%;
+                float: left;
+              }
+            }
+          }
+        }
+        background: url('../src/img/header-grid-bg.png');
+        background-size: cover;
+        height: 256px;
+        float: left;
+        width: 100%;
+        position: relative;
+        &:before{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          content: '';
+          background: rgba(79,79,79,0.8);
+          z-index: 1;
+          background-position: top center;
+        }
+        div{
+          height: 100%;
+          position: relative;
+        }
+        .section-devider {
+          position: absolute;
+          z-index: 1;
+          &:before {
+            content: none;
+          }
+          &:after {
+            background: setStyle($config, $key, second);
+            border-color: setStyle($config, $key, shadow);
+            border-width: 10px;
+            height: 70px;
+            top: -95px;
+            @include transform(translate(-50%, 50px) rotate(2deg));
+          }
+        }
+        .wrapper{
+          width: 100%;
+          height: 100%;
+          display: table;
+          .wrapper-inner{
+            width: 100%;
+            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+            @media (max-width: 480px){
+              padding: 0px 10px;
+
+            }
+            h1{
+              color: #FFF;
+              text-transform: uppercase;
+              width: 100%;
+              text-align: center;
+              margin-bottom: 0px;
+              font-style: italic;
+              position: relative;
+              z-index: 1;
+            }
+          }
+        }
+
+
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}

@@ -1,0 +1,426 @@
+.founder-story {
+  @each $key, $value in $theme {
+    @if map-has-key($config, $key) {
+      .#{$value} & {
+        float: left;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        .tell-us-your-story {
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          color: white;
+          float: left;
+          padding: 68px 0 200px 0;
+          position: relative;
+          text-align: center;
+          width: 100%;
+          &:before {
+            background: #4f4f4f;
+            content: "";
+            height: 100%;
+            left: 0;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            width: 100%;
+          }
+          article {
+            h2 {
+              @include font_regularItalic();
+              @include rem-fallback(font-size, 2.5);
+            }
+            p {
+              @include rem-fallback(font-size, 1.375);
+              text-align: left;
+            }
+          }
+          &.expired-time {
+              padding-bottom: 90px;
+                padding-top: 160px;
+                background-position: center top;
+              
+              span {
+                  font-weight: 700;
+                  color: #76d8e5;
+              }
+          }
+        }
+        .prizes {
+          float: left;
+          margin-top: -139px;
+          position: relative;
+          width: 100%;
+          background: setStyle($config, $key, second);
+          .prizes-requirements {
+            background: white;
+            display: block;
+            float: none;
+            margin: 0 auto;
+            max-width: 750px;
+            padding: 10px;
+            position: relative;
+            z-index: 2;
+            .prizes-requirements-container {
+              padding: 60px 55px 30px 55px;
+              &:after {
+                right: 0;
+              }
+              &:before {
+                left: 0;
+              }
+              h2 {
+                width: 168px;
+                background: setStyle($config, $key, second);
+                color: white;
+                padding: 5px 0px;
+                display: block;
+                position: absolute;
+                margin-bottom: 20px;
+                margin-top: 15px;
+                text-align: center;
+                top: -35px;
+                left: 50%;
+                z-index: 2;
+                @include transform(translateX(-50%));
+                border-left: 3px solid setStyle($config, $key, first);
+                border-right: 3px solid setStyle($config, $key, first);
+              }
+              ul {
+                li {
+                  position: relative;
+                  &:before {
+                    content: "\f111";
+                    color: #ffc261;
+                    display: inline-block;
+                    font-family: 'FontAwesome';
+                    font-size: 8px;
+                    left: -20px;
+                    position: absolute;
+                    text-rendering: auto;
+                    top: 0;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                  }
+                  list-style: none;
+                }
+              }
+              hr {
+                display: block;
+                bottom: 21px;
+                border: none;
+                border-top: 3px solid #eef6fa;
+                height: 3px;
+                left: 0;
+                margin: 0;
+                position: absolute;
+                @include transform(rotate(-1deg));
+                width: 100%;
+                &:before, &:after {
+                  background: white;
+                  display: block;
+                  content: "";
+                  height: 20px;
+                  position: absolute;
+                  bottom: 0;
+                  width: 10px;
+                  z-index: 2;
+                }
+                &:after {
+                  right: 0;
+                }
+                &:before {
+                  left: 0;
+                }
+              }
+            }
+          }
+          &.expired-time {
+            height: 30px;
+            margin-top: 10px;
+            
+            &:after {
+                height: 35px;
+            }
+          }
+        }
+        .story {
+          color: #5b5b5b;
+          float: left;
+          padding-bottom: 30px;
+          position: relative;
+          width: 100%;
+          .container {
+            max-width: 615px;
+            padding-top: 36px;
+            position: relative;
+            z-index: 3;
+          }
+          label {
+            @include rem-fallback(font-size, 1.125);
+            margin-bottom: 10px;
+            text-align: center;
+            width: 100%;
+            &.error {
+                color: #ff0000;
+                @include rem-fallback(font-size, .9);
+                @include font_bold();
+            }
+          }
+
+          .form-group {
+            float: left;
+            width: 100%;
+            position: relative;
+            textarea {
+                resize: none;
+                padding-bottom: 20px;
+            }
+            .char-count {
+              color: #bdbdbd;
+              position: absolute;
+              right: 10px;
+              bottom: 4px;
+              z-index: 1;
+            }
+          }
+          .checkbox {
+            clear: both;
+            margin: 10px auto 0 auto;
+            text-align: center;
+            width: 100%;
+            label:not(.error) {
+              display: inline-block;
+              @include font_bold();
+              line-height: 140%;
+              margin: 0 auto;
+              padding: 0;
+              position: relative;
+              width: auto;
+              &:before {
+                color: setStyle($config, $key, first);
+                content: "\f096";
+                display: inline-block;
+                font-family: 'FontAwesome';
+                font-size: 18px;
+                line-height: 135%;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                padding-right: 15px;
+              }
+              span {
+                display: inline-block;
+              }
+            }
+            input {
+              height: 0;
+              visibility: hidden;
+              width: 0;
+            }
+            input:checked + label, input:checked + label + label {
+              &:before {
+                content: "\f14a";
+              }
+            }
+            .fa-info-circle {
+              color: #c5c5c5;
+              // margin-left: 16px;
+            }
+
+
+          }
+            .btn {
+                &.processing {
+                    display:none;
+                }
+                i.fa-spin {
+                    margin-top: -8px;
+                    font-size: 15px;
+                }
+            }
+
+        }
+        .thank-you-story, .thank-you-story-2 {
+          display: none;
+          color: #5b5b5b;
+          text-align: center;
+          float: left;
+          width: 100%;
+          padding: 100px 0;
+          .container {
+            max-width: 640px;
+            padding-top: 21px;
+            position: relative;
+            z-index: 3;
+          }
+          h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 40px;
+            font-size: 2.5rem;
+          }
+          p {
+            font-size: 18px;
+            font-size: 1.125rem;
+            margin-bottom: 10px;
+            width: 100%;
+          }
+          .form-group {
+            float: left;
+            margin-bottom: 15px;
+            width: 100%;
+            label {
+              text-align: left;
+              @include rem-fallback(font-size, 1.125);
+              margin-bottom: 10px;
+              padding-left: 10px;
+              width: 100%;
+            }
+            select {
+              background: transparent;
+              appearance: none;
+              -o-appearance: none;
+              -ms-appearance: none;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+              @include border-radius(0);
+              line-height: 100%;
+              position: relative;
+              z-index: 1;
+            }
+            .select-container {
+              background: white;
+              float: left;
+              position: relative;
+              width: 100%;
+              z-index: 0;
+              &:after {
+                background: setStyle($config, $key, first);
+                content: "\f107";
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 34px;
+                width: 55px;
+                display: block;
+                font-family: 'FontAwesome';
+                line-height: 34px;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 991px) {
+          .prizes {
+            .prizes-requirements {
+              &:before {
+                border-width: 0 360px 41px 360px;
+              }
+            }
+          }
+        }
+        @media only screen and (min-width: 768px) {
+          .story {
+            .form-group {
+              .col-sm-6 {
+                padding:0;
+                &:first-child {
+                  padding-right: 10px;
+                }
+                &:last-child {
+                  padding-left: 10px;
+                }
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 767px) {
+          .prizes {
+            .prizes-requirements {
+              .prizes-requirements-container {
+                padding: 60px 20px 30px 20px;
+                 h2 {
+                  top: -29px;
+                  &:before {
+                    border-width: 0 84px 13px 84px;
+                    top: -13px;
+                  }
+                  &:after {
+                    bottom: -16px;
+                    border-top: 13px solid #0097a7;
+                  }
+                }
+              }
+            }
+          }
+          .story {
+            padding: 0 30px;
+            .form-group {
+              .col-sm-6 {
+                margin-bottom: 20px;
+                padding: 0;
+              }
+            }
+          }
+        }
+        @media only screen and (max-width: 479px) {
+          .prizes {
+            .prizes-requirements {
+              .prizes-requirements-container {
+                padding-top: 80px;
+                padding-bottom: 50px;
+                h2 {
+                  top: -23px;
+                  &:before {
+                    border-width: 0 84px 19px 84px;
+                    top: -19px;
+                  }
+                  &:after {
+                    bottom: -22px;
+                    border-top: 19px solid #0097a7;
+                  }
+                }
+              }
+            }
+          }
+          .story {
+            .checkbox {
+              label:not(.error) {
+                padding: 0 30px;
+                &:before {
+                  position: absolute;
+                  left: 10px;
+                }
+              }
+            }
+          }
+        }
+        .time-expired {
+            float: left;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            
+            .content {
+                max-width: 750px;
+                margin: auto;
+                padding: 20px;
+                text-align: center;
+                width: 100%;
+                
+                p {
+                    font-size: 1.375rem;
+                }
+            }
+        }
+      }
+    } @else {
+			@warn "The key ´#{$key} isn’t defined in the map $config´"
+		}
+	}
+}
