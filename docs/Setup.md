@@ -10,6 +10,7 @@
    1. [Login With Ajax](#login-with-ajax)
    2. [Homepage Setup](#homepage-setup)
    3. [Site Options](#site-options)
+3. [Customizing the Theme](#customizing-the-theme)
 
 ## Installation
 
@@ -94,3 +95,7 @@ To also accept submissions via the Twitter API, setup a hashtag to monitor as we
 ![Facebook & Twitter Configuration setup](siteoptions_facebooktwitter.png)
 
 To power the Twitter API query as well as the Twitter and Facebook login buttons from the homepage, also specific the Twitter consumer key and secret and Facebook App ID here.
+
+## Customizing the Theme
+
+To customize the look and feel of this theme, it is possible to either use this as a parent theme or to manually override this theme directly. Note that this theme uses Gulp to build all Javascript and CSS.

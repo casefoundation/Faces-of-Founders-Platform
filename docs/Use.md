@@ -17,6 +17,7 @@
    2. [Guidelines](#guidelines)
    3. [Request More](#request-more)
    4. [Support](#support)
+   5. [Submission Review](#submission-review)
 6. [Manually Adding or Modifying Stories](#manually-adding-or-modifying-stories)
 7. [Modifying The Submitted Story Fields](#modifying-the-submitted-story-fields)
 
@@ -27,6 +28,8 @@
 To add new judges, an admin should create a new WordPress user by going to _Users_, _Add New_ from the WordPress dashboard. The admin should make sure to set the new user's role to _Judge_. When users with the role of _Judge_ login, WordPress automatically directs them to the `/dashboard-judge/` page where they can begin interacting with the platform.
 
 ## Closing Submissions
+
+TODO
 
 ## Interacting With The Dashboard As An Admin
 
@@ -52,7 +55,7 @@ In the dashboard is also a status view for submitted stories. The table details 
 
 ![Admin dashboard requests](use_adminrequests.png)
 
-If a judge requests more stories to review, his or her request appears here. To approve the request, click the row and choose to either reassign stories already assigned to other judges or to assign stories that other judges have recused themselves from.
+If a judge requests more stories to review by using the [Request More](#request-more) tab in the judge's dashboard, his or her request appears here. To approve the request, click the row and choose to either reassign stories already assigned to other judges or to assign stories that other judges have recused themselves from.
 
 ### Recusals
 
@@ -70,25 +73,29 @@ All data in the dashboard may be downloaded as a CSV file.
 
 ![Judge dashboard](use_judgedashboard.png)
 
-Upon login as a judge, WordPress takes the user to the specialized `/dashboard-judge/` page.
+Upon login as a judge, WordPress takes the user to the specialized `/dashboard-judge/` page. On the initial dashboard, a judge will see the submissions in his or her queue for review. To learn more about how individual submission reviews work, see [Submission Review](#submission-review) below.
 
 ### Guidelines
 
-![Judge dashboard guidelines]()
+![Judge dashboard guidelines](use_judgeguidelines.png)
 
-dfdfd
+This tab is open space to provide judges with guidelines for their review. An admin may change the text of this page by editing the _Dashboard Judge_ from the  _Pages_ section of the Wordpress dashboard.
 
 ### Request More
 
-![Judge dashboard request more]()
+![Judge dashboard request more](use_judgerequestmore.png)
 
-dfdfd
+If a judge wishes to review more submissions, he or she may do so by requesting more and specifying an amount to request. That request appears for admins under the [Requests](#requests) tab in the admin dashboard.
 
 ### Support
 
-![Judge dashboard support]()
+A judge may request support from within the judge's dashboard by clicking this link. It is a `mailto:` link addressed to the WordPress site admin email address.
 
-dfdfd
+### Submission Review
+
+![Judge submission review](use_judgereview.png)
+
+For each submitted story, a judge can view and score each of the respondent's answers. The system uses the aggregate of these scores to determine rankings. If the judge must recuse his or herself from reviewing a particular submission, there is a _Recuse Review_ at the top of the page that will remove the story from the judge's queue and make it available for another judge to review. The recusal also appears on the admin [Recusals](#recusals) tab.
 
 ## Manually Adding or Modifying Stories
 
@@ -97,3 +104,5 @@ To add a new submission manually, go to _Stories_ and then _Add New_ from sideba
 To modify a previously submitted story, go to _Stories_ from sidebar in the WordPress dashboard. From there, use the table and WordPress searching/filtering tools to locate the proper story. Click the title/name of submitter to go to the edit screen.
 
 ## Modifying The Submitted Story Fields
+
+Each field used in the submitted stories is an Advanced Custom Field (ACF). To modify the questions asked for respondents, use that plugin to produce a new field set and update the necessary references in the theme. This theme stores ACF code in `inc/advanced-custom-fields.php`.
