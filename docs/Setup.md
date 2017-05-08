@@ -16,7 +16,7 @@
 
 ### WordPress
 
-Because this is a WordPress theme, it requires a full WordPress instance to function. To set up WordPress, visit the [download page](https://wordpress.org/download/) and follow the installation guide, or follow your hosting provider's WordPress-specific installtion instructions.
+Because this is a WordPress theme, it requires a full WordPress instance to function. To set up WordPress, visit the [download page](https://wordpress.org/download/) and follow the installation guide, or follow the hosting provider's WordPress-specific installation instructions.
 
 ### Plugins
 
@@ -50,7 +50,7 @@ The theme automatically creates the required pages (Dashboard Admin, Dashboard J
 
 ![Reading settings](reading_settings.png)
 
-Create a page and configure it as homepage, for that go to _Settings_ and then _Reading_ from the WordPress dashboard and select the option _A static page (select below)_ and in the _Front Page_ dropdown choose the page you created.
+Create a page and configure it as homepage, for that go to _Settings_ and then _Reading_ from the WordPress dashboard and select the option _A static page (select below)_ and in the _Front Page_ dropdown choose the page previously created.
 
 ![Homepage setup](homepage_setup.png)
 
@@ -64,7 +64,7 @@ The rest of the site is configurable from the _Site Options_ link in the sidebar
 
 ![Social links setup](siteoptions_social.png)
 
-In this section you can enter the url of your social networks like Facebook, Twitter, Instagram and Email.
+In this section is for URLs to social networks like Facebook, Twitter, Instagram and Email.
 
 #### Design
 

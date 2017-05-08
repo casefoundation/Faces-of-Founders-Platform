@@ -2,34 +2,33 @@
 
 ## Table of Contents
 
-1. [Overview](#overview)
+1. [Closing Submissions](#closing-submissions)
 2. [Adding Judges](#adding-judges)
-3. [Closing Submissions](#closing-submissions)
-4. [Interacting With The Dashboard As An Admin](#interacting-with-the-dashboard-as-an-admin)
+3. [Interacting With The Dashboard As An Admin](#interacting-with-the-dashboard-as-an-admin)
    1. [First Run](#first-run)
    2. [Judges](#judges)
    3. [Submissions](#submissions)
    4. [Requests](#requests)
    5. [Recusals](#recusals)
    6. [Export](#export)
-5. [Interacting With The Dashboard As A Judge](#interacting-with-the-dashboard-as-an-judge)
+4. [Interacting With The Dashboard As A Judge](#interacting-with-the-dashboard-as-an-judge)
    1. [Dashboard](#dashboard)
    2. [Guidelines](#guidelines)
    3. [Request More](#request-more)
    4. [Support](#support)
    5. [Submission Review](#submission-review)
-6. [Manually Adding or Modifying Stories](#manually-adding-or-modifying-stories)
-7. [Modifying The Submitted Story Fields](#modifying-the-submitted-story-fields)
+5. [Manually Adding or Modifying Stories](#manually-adding-or-modifying-stories)
+6. [Modifying The Submitted Story Fields](#modifying-the-submitted-story-fields)
 
-## Overview
+## Closing Submissions
+
+![Closing submissions](use_adminclose.png)
+
+When ready to begin use of the judging platform, an admin must set the site configuration to no longer accept further submissions. To do this, edit the _Homepage_ by going to _Pages_ from the WordPress dashboard and selecting _Homepage_ from the list. On the edit screen, select the tab titled _Limit date configuration_ where there is an option to enable a limit date. Past that date, the system will disable the photo upload tool and submission form so that visitors may no longer submit content.
 
 ## Adding Judges
 
 To add new judges, an admin should create a new WordPress user by going to _Users_, _Add New_ from the WordPress dashboard. The admin should make sure to set the new user's role to _Judge_. When users with the role of _Judge_ login, WordPress automatically directs them to the `/dashboard-judge/` page where they can begin interacting with the platform.
-
-## Closing Submissions
-
-TODO
 
 ## Interacting With The Dashboard As An Admin
 
