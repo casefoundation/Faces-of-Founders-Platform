@@ -94,8 +94,12 @@ To also accept submissions via the Twitter API, setup a hashtag to monitor as we
 
 ![Facebook & Twitter Configuration setup](siteoptions_facebooktwitter.png)
 
-To power the Twitter API query as well as the Twitter and Facebook login buttons from the homepage, also specific the Twitter consumer key and secret and Facebook App ID here.
+To power the Twitter API query as well as the Twitter and Facebook login buttons from the homepage, also specific the Twitter consumer key and secret and Facebook App ID here. Setting the application keys for Facebook and Twitter allows users to pull-in their profile pictures and also set their generated image as their profile picture.
 
 ## Customizing the Theme
 
 To customize the look and feel of this theme, it is possible to either use this as a parent theme or to manually override this theme directly. Note that this theme uses Gulp to build all Javascript and CSS.
+
+## MailChimp
+
+To automatically subscribe submissions and signups to a MailChimp account, add a MailChimp key and list ID on lines 526 and 527 of `inc/csl-social-share.php`.

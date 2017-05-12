@@ -21,6 +21,8 @@ To read more about this campaign, visit [casefoundation.org/facesoffounders](htt
 
 ## Purpose
 
+![Preview of judging platform](docs/use_adminsubmissions.png)
+
 Recognizing the value of the platform behind #FacesofFounders, the Case Foundation has open sourced the WordPress theme that powered the site when it launched. The code in this project is everything an organization needs to launch an effort similar to #FacesofFounders whereby participants can upload their photos and tell their story. The platform also contains a judging platform that allows a distributed pool of judges to each review individual submissions and score their submissions. Site administrators can monitor the aggregate scores of participants and manage the review process.
 
 When using this tool, one can choose to leverage both the entry submission and judging tools, or use each separately. To use just the judging platform, as documented in [Use](docs/Use.md), a site administrator can manually upload candidates for review by judges. To use just the submission platform, skip the documentation under [Use](docs/Use.md) outlining setting up and managing judges.
