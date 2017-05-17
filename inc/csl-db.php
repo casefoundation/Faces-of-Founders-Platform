@@ -651,6 +651,7 @@ add_action( 'wp_ajax_download_csv', 'download_csv' );
 function download_csv() {
     global $wpdb;
 
+    $judging_fields = inclusive_entrepreneurship_get_judging_fields();
     $upload_dir = wp_upload_dir();
     $csl_dirname = $upload_dir['basedir'].'/csl-temp';
     if ( ! file_exists( $csl_dirname ) ) {
@@ -659,14 +660,11 @@ function download_csv() {
     $file_name = uniqid('export_fof_').'.csv';
     $full_name = $csl_dirname . '/'. $file_name;
     $file = fopen($full_name,"w");
-    /**
-     *
-    story_problem_solve
-     * story_biggest_obstacle
-     * story_entrepeneurship_important
-     *
-     *
-     */
+
+    $field1 = mysql_real_escape_string($judging_fields[0]['field_name']);
+    $field2 = mysql_real_escape_string($judging_fields[1]['field_name']);
+    $field3 = mysql_real_escape_string($judging_fields[2]['field_name']);
+
     $query = $wpdb->get_results(
         "
         SELECT
@@ -698,11 +696,11 @@ function download_csv() {
         INNER JOIN {$wpdb->posts} p
         ON r.story_id = p.ID
         INNER JOIN {$wpdb->postmeta} m1
-        ON m1.post_id = r.story_id AND m1.meta_key = 'story_problem_solve'
+        ON m1.post_id = r.story_id AND m1.meta_key = '$field1'
         INNER JOIN {$wpdb->postmeta} m2
-        ON m2.post_id = r.story_id AND m2.meta_key = 'story_biggest_obstacle'
+        ON m2.post_id = r.story_id AND m2.meta_key = '$field2'
         INNER JOIN {$wpdb->postmeta} m3
-        ON m3.post_id = r.story_id AND m3.meta_key = 'story_entrepeneurship_important'
+        ON m3.post_id = r.story_id AND m3.meta_key = '$field3'
         LEFT JOIN {$wpdb->postmeta} m4
         ON m4.post_id = r.story_id AND m4.meta_key = 'story_city'
         LEFT JOIN {$wpdb->postmeta} m5
@@ -838,6 +836,7 @@ add_action( 'wp_ajax_nopriv_autoassing_stories', 'autoassing_stories' );
 add_action( 'wp_ajax_autoassing_stories', 'autoassing_stories' );
 
 function autoassing_stories() {
+  $judging_fields = inclusive_entrepreneurship_get_judging_fields();
     global $wpdb;
     $prefix = $wpdb->prefix;
     $table_name = $prefix . "csl_story_reviews";
@@ -849,17 +848,17 @@ function autoassing_stories() {
         'meta_query'    => array(
             'relation'      => 'AND',
             array(
-                'key'       => 'story_problem_solve',
+                'key'       => $judging_fields[0]['field_name'],
                 'value'     => '',
                 'compare'   => '!='
             ),
             array(
-                'key'       => 'story_biggest_obstacle',
+                'key'       => $judging_fields[1]['field_name'],
                 'value'     => '',
                 'compare'   => '!='
             ),
             array(
-                'key'       => 'story_entrepeneurship_important',
+                'key'       => $judging_fields[2]['field_name'],
                 'value'     => '',
                 'compare'   => '!='
             )

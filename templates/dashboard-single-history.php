@@ -21,6 +21,7 @@ $info = ['Not enough <br>information <br>to decide', 'Very Weak', 'Needs <br> Im
 if(current_user_can('administrator')||$data[0]->judge_id==$current_user->ID ) {
 	$access=true;
 }
+$judging_fields = inclusive_entrepreneurship_get_judging_fields();
 ?>
 	<?php if (count($data)==1&&$access==true): ?>
 	<main id="main" class="main-content-container" role="main" data-review="<?php echo $data[0]->ID; ?>" data-judge="<?php echo $current_user->ID ?>">
@@ -95,8 +96,8 @@ if(current_user_can('administrator')||$data[0]->judge_id==$current_user->ID ) {
 					<div class="panel-group" id="accordion">
 						<div class="history story-1">
 							<div class="cont-history">
-								<h3 data-question="Q1" >Tell us about your business. What problem is it trying to solve?</h3>
-								<p data-answer="A1"><?php the_field('story_problem_solve', $story_id); ?></p>
+								<h3 data-question="Q1" ><?php echo $judging_fields[0]['field_question']; ?></h3>
+								<p data-answer="A1"><?php the_field($judging_fields[0]['field_name'], $story_id); ?></p>
 							</div>
 						<div class="panel">
 							<div class="panel-heading">
@@ -149,8 +150,8 @@ if(current_user_can('administrator')||$data[0]->judge_id==$current_user->ID ) {
 						</div>
 						<div class="history story-2">
 							<div class="cont-history">
-								<h3 data-question="Q2">What has been your biggest obstacle in your entrepreneurship journey?</h3>
-								<p data-answer="A2" ><?php the_field('story_biggest_obstacle', $story_id); ?></p>
+								<h3 data-question="Q2"><?php echo $judging_fields[1]['field_question']; ?></h3>
+								<p data-answer="A2" ><?php the_field($judging_fields[1]['field_name'], $story_id); ?></p>
 							</div>
 						<div class="panel">
 							<div class="panel-heading">
@@ -202,8 +203,8 @@ if(current_user_can('administrator')||$data[0]->judge_id==$current_user->ID ) {
 						</div>
 						<div class="history story-3">
 							<div class="cont-history">
-								<h3 data-question="Q3">How do you or your business contribute to advancing inclusive entrepreneurship?</h3>
-								<p data-answer="A3"><?php the_field('story_entrepeneurship_important', $story_id); ?></p>
+								<h3 data-question="Q3"><?php echo $judging_fields[2]['field_question']; ?></h3>
+								<p data-answer="A3"><?php the_field($judging_fields[2]['field_name'], $story_id); ?></p>
 							</div>
 						<div class="panel">
 							<div class="panel-heading">

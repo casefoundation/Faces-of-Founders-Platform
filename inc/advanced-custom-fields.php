@@ -6,6 +6,7 @@
  * Time: 01:34 AM
  */
 if( function_exists('acf_add_local_field_group') ):
+    $judging_fields = inclusive_entrepreneurship_get_judging_fields();
 
     acf_add_local_field_group(array (
         'key' => 'group_57eade67e5a4b',
@@ -1231,8 +1232,8 @@ if( function_exists('acf_add_local_field_group') ):
             ),
             array (
                 'key' => 'field_57ec33f4976dc',
-                'label' => 'Tell us about your business. What problem is it trying to solve?',
-                'name' => 'story_problem_solve',
+                'label' => $judging_fields[0]['field_question'],
+                'name' => $judging_fields[0]['field_name'],
                 'type' => 'textarea',
                 'instructions' => '',
                 'required' => 0,
@@ -1252,8 +1253,8 @@ if( function_exists('acf_add_local_field_group') ):
             ),
             array (
                 'key' => 'field_57ec340d976dd',
-                'label' => 'What has been your biggest obstacle in your entrepreneurship journey?',
-                'name' => 'story_biggest_obstacle',
+                'label' => $judging_fields[1]['field_question'],
+                'name' => $judging_fields[1]['field_name'],
                 'type' => 'textarea',
                 'instructions' => '',
                 'required' => 0,
@@ -1273,8 +1274,8 @@ if( function_exists('acf_add_local_field_group') ):
             ),
             array (
                 'key' => 'field_57ec3431976de',
-                'label' => 'Why do you believe diversifying entrepreneurship is important?',
-                'name' => 'story_entrepeneurship_important',
+                'label' => $judging_fields[2]['field_question'],
+                'name' => $judging_fields[2]['field_name'],
                 'type' => 'textarea',
                 'instructions' => '',
                 'required' => 0,

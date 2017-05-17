@@ -118,10 +118,10 @@ function twitter_auth()
 add_action( 'wp_ajax_nopriv_tweet_picture_auth', 'tweet_picture_auth' );
 add_action( 'wp_ajax_tweet_picture_auth', 'tweet_picture_auth' );
 function tweet_picture_auth(){
-    
+
     ini_set('display_errors', 'On');
     error_reporting(E_ALL);
-    
+
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
@@ -142,7 +142,7 @@ function tweet_picture_auth(){
         $_SESSION['oauth_token'] = $reply->oauth_token;
         $_SESSION['oauth_token_secret'] = $reply->oauth_token_secret;
         $_SESSION['oauth_verify'] = true;
-        
+
         $_SESSION['tweet'] = @$_REQUEST['tweet'];
         $_SESSION['tweet_image'] = @$_REQUEST['tweet_image'];
 
@@ -193,12 +193,12 @@ function tweet_picture_auth(){
                   'status' => @$_SESSION['tweet'],
                   'media_ids' => $reply->media_id_string
                 ]);
-                
+
                 if(@$reply->id){
                     $tweet_reply = $reply;
                 } else {
                     $user_info = null;
-                }    
+                }
             } else {
                 $user_info = null;
             }
@@ -216,11 +216,11 @@ function tweet_picture_auth(){
             'user_name' =>  $user_info->screen_name,
             'profile_image_url' =>  $user_info->profile_image_url,
         ]];
-        
+
         if(isset($tweet_reply)){
             $result['user_info']['tweet_reply'] = $tweet_reply;
         }
-        
+
     } else {
         $result = ['status' => 'error'];
         unset ($_SESSION['oauth_token'],$_SESSION['oauth_token_secret']);
@@ -264,11 +264,11 @@ add_action( 'wp_ajax_refresh_image', 'refresh_image' );
 function refresh_image()
 { ?>
     <div class="founders-grid">
-        <?php 
+        <?php
         // FACTS
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
-            
+
             $facts_params = array(
                 'post_type' => 'fact',
                 'post_status' => 'publish',
@@ -280,11 +280,11 @@ function refresh_image()
 
             $facts_query = new WP_Query( $facts_params );
             $facts_total_count = $facts_query->post_count;
-            
+
             $facts_params['posts_per_page'] = 4;
             $facts_query = new WP_Query( $facts_params );
 
-        
+
         // STORIES
             $stories_params = array(
                 'post_type' => 'story',
@@ -301,10 +301,10 @@ function refresh_image()
                     )
                 )
             );
-            /* 
-             * GET COUNT BY DB QUERY TO IMPROVE PERFOMANCE 
+            /*
+             * GET COUNT BY DB QUERY TO IMPROVE PERFOMANCE
              */
-            
+
             global $wpdb;
 
             $sql = "SELECT count(DISTINCT pm.post_id)
@@ -315,17 +315,17 @@ function refresh_image()
             AND p.post_type = 'story'
             AND p.post_status = 'publish'
             ";
-            
+
             $count = $wpdb->get_var($sql);
             $stories_count = $count;
-            
-            /* 
-             * ***** 
+
+            /*
+             * *****
              */
-            
+
             $stories_params['posts_per_page'] = 36-$facts_query->post_count;
-            $the_query = new WP_Query( $stories_params ); 
-        
+            $the_query = new WP_Query( $stories_params );
+
         $facts_count = 0;
         $total_posts = [];
         for($i=0,$j=0;$i<count($the_query->posts);$i){
@@ -337,7 +337,7 @@ function refresh_image()
                 $i++;
             }
         }
-        
+
         ?>
         <?php if ( count($total_posts)>0 ) :
             $count=0;
@@ -345,9 +345,9 @@ function refresh_image()
             <?php foreach($total_posts as $post_ob):
                 global $post;
                 $post = $post_ob;
-                setup_postdata( $post ); 
+                setup_postdata( $post );
                 ?>
-                
+
                 <?php if ($image = get_field('story_image', $post_ob->ID)):$count++; ?>
                     <div class="founder grid-item" data-id="<?php echo $post_ob->ID;?>">
                         <?php echo wp_get_attachment_image( $image, 'story-medium', $post_ob->ID); ?>
@@ -358,14 +358,14 @@ function refresh_image()
                     </div>
                 <?php endif ?>
             <?php endforeach; ?>
-        
+
             <?php wp_reset_postdata(); ?>
         <?php endif; ?>
-        
-        
-        
-        
-        
+
+
+
+
+
         ?>
     </div>
     <script>
@@ -384,7 +384,7 @@ add_action( 'wp_ajax_load_more_images', 'load_more_images' );
 function load_more_images()
 {
     $paged = $_POST['paged'];
-    
+
     // FACTS
     $facts_params = array(
         'post_type' => 'fact',
@@ -394,13 +394,13 @@ function load_more_images()
     );
     $facts_query = new WP_Query($facts_params);
     $total_facts_count = $facts_query->post_count;
-    
+
     $facts_offset = 4*($paged-1) > $facts_query->post_count ? $facts_query->post_count : 4*($paged-1);
-    
+
     $facts_params['posts_per_page'] = 4;
     $facts_params['paged'] = $paged;
     $facts_query = new WP_Query($facts_params);
-    
+
     $stories_param = array(
             'post_type' => 'story',
             'posts_per_page' => 36-$facts_query->post_count,
@@ -416,9 +416,9 @@ function load_more_images()
                 )
             )
         );
-    
+
     $the_query = new WP_Query( $stories_param );
-    
+
         $facts_count = 0;
         $total_posts = [];
         for($i=0,$j=0;$i<count($the_query->posts);$i){
@@ -430,34 +430,34 @@ function load_more_images()
                 $i++;
             }
         }
-        
-        
+
+
     if ( count($total_posts)>0 ) {
         $count=0;
         $images = array();
         foreach($total_posts as $post_ob){
             global $post;
             $post = $post_ob;
-            setup_postdata( $post ); 
-            
-            
+            setup_postdata( $post );
+
+
             if ($image = get_field('story_image', $post_ob->ID)) {
                 $count++;
                 $images[] = ['image'=>wp_get_attachment_image( $image, 'story-medium' ), 'id'=>$post_ob->ID];
             } else if(has_post_thumbnail($post_ob->ID)){
                 $count++;
                 $images[] = ['image'=>get_the_post_thumbnail($post_ob->ID, 'story-medium' )];
-                
+
             }
         }
-        
-        
-        echo json_encode(['success'=>true, 'images'=> $images, 'page_loaded'=>(int)$paged, 'count'=>$count]);  
+
+
+        echo json_encode(['success'=>true, 'images'=> $images, 'page_loaded'=>(int)$paged, 'count'=>$count]);
     }
     else {
         echo json_encode(['success'=>false, 'message ' => 'no posts']);
     }
-    
+
     wp_die();
 }
 /* *****************************
@@ -473,7 +473,7 @@ function generate_image()
     if ($filename) {
         $att_id = uploadImage($filename);
         $att_info = wp_get_attachment_image_src($att_id, 'story-preview');
-        
+
         if(isset($_REQUEST['newsletter'])){
             if($_REQUEST['newsletter']=="true"){
                 if(isset($_REQUEST['email'])){
@@ -497,18 +497,18 @@ function generate_image()
 
                     // Insert the post into the database
                     $post_id = wp_insert_post( $post_params );
-                    
+
                     if(isset($_REQUEST['email'])){
                         update_field('story_email', $_REQUEST['email'], $post_id);
                     }
                     update_field('story_image', $att_id , $post_id);
-                    
+
                     if(isset($_REQUEST['print_image'])){
                         if($_REQUEST['print_image']=="true"){
                             update_field('print_photo', 'yes' , $post_id);
                         }
                     }
-        
+
         echo json_encode(['success'=>true, 'response'=> ['attachment_id'=>$att_id, 'image_url'=>$att_info[0], 'post_id'=>@$post_id], 'mailchimp'=>@$result]);
     }
     else {
@@ -546,12 +546,12 @@ function compositeImage()
     $overlay_url = $_POST['overlayUrl'];
     $image_url = $_POST['imageUrl'];
     $source = $_POST['source'];
-    
-    
+
+
     $is_custom_text = @$_POST['is_custom_text'];
     $custom_text = stripslashes_deep( @$_POST['custom_text'] );
     $custom_text_font_size = @$_POST['custom_text_font_size'];
-    
+
     $img_left_offset = @$_POST['img_left_offset'];
     $img_top_offset = @$_POST['img_top_offset'];
 
@@ -563,10 +563,10 @@ function compositeImage()
         $imageBlob = base64_decode($cleanBase64);
         $img = new \Imagick();
         $img->readImageBlob($imageBlob);
-        
+
         $img->setImageFormat('jpg');
         $img->setCompressionQuality(100);
-        
+
         switch ($img->getImageOrientation()) {
             case Imagick::ORIENTATION_TOPLEFT:
                 break;
@@ -624,44 +624,44 @@ function compositeImage()
             1
         );
         $img->compositeImage($overlay, \Imagick::COMPOSITE_ATOP, 0, 0);
-        
+
         if($is_custom_text=='1'){
                 // GENERATE TEXT
                 $text_img = new \Imagick();
                 $text_img->newPseudoImage($overlay->getImageWidth(), $overlay->getImageHeight()*(125/415), "gradient:rgba(0,0,0,0)-rgba(0,0,0,0)");
-                
+
                 $draw = new \ImagickDraw();
                 $draw->setFillColor('rgb(255, 255, 255)');
                 $draw->setFontSize($overlay->getImageHeight()*($custom_text_font_size/415));
                 $draw->setGravity(\Imagick::GRAVITY_CENTER);
                 $custom_text = str_replace('\n', "\n", $custom_text);
-                
+
                 // NORMALIZE TEXT TO AVOID VERY LONG TEXT WITHOUT NEWSPACES
-                
+
                 $font_analysis = $text_img->queryFontMetrics($draw, $custom_text);
                 $words = explode(' ', $custom_text);
                 $normalized_custom_text = "";
                 foreach($words as $word){
                     $separation = $normalized_custom_text!=''?' ':'';
                     $font_analysis = $text_img->queryFontMetrics($draw, $normalized_custom_text.$separation.$word);
-                    
+
                     if($font_analysis['textWidth']<$overlay->getImageWidth()){
                         $normalized_custom_text.=$separation.$word;
                     } else {
                         $normalized_custom_text.="\n".$separation.$word;
                     }
                 }
-                
+
                 $text_img->annotateimage($draw, 0, 0, 0, $normalized_custom_text);
-                
+
                 $img->compositeImage($text_img, \Imagick::COMPOSITE_ATOP, 0,$overlay->getImageHeight()*((415-135)/415) );
         }
-        
+
         // IMAGE RESIZE FOR OPEN GRAPH
         /*
         $aspect_ratio = 1.9047619;
         $ogWidth = $overlay->getImageWidth()*$aspect_ratio;
-        
+
         $rectangular_img =  clone $img;
         $rectangular_img->resizeimage(
                 $ogWidth,
@@ -669,17 +669,17 @@ function compositeImage()
                 \Imagick::FILTER_LANCZOS,
                 1
             );
-        
+
         $img->resizeimage(
                 $ogWidth,
                 $ogWidth,
                 \Imagick::FILTER_LANCZOS,
                 1
             );
-        
+
         $rectangular_img->compositeImage($img, \Imagick::COMPOSITE_ATOP,0,($overlay->getImageWidth()-$ogWidth)/2);
         $rectangular_img->blurImage(50,80);
-        
+
         $img->resizeimage(
                 $overlay->getImageWidth(),
                 $overlay->getImageWidth(),
@@ -687,7 +687,7 @@ function compositeImage()
                 1
             );
         $rectangular_img->compositeImage($img, \Imagick::COMPOSITE_ATOP, ($ogWidth-$overlay->getImageWidth())/2, 0);
-        
+
         $img->resizeimage(
                 $ogWidth, $overlay->getImageWidth(),
                 \Imagick::FILTER_LANCZOS,
@@ -713,7 +713,7 @@ function compositeImage()
             $userHandle = fopen($image_url, 'rb');
             $img = new \Imagick();
             $img->readImageFile($userHandle);
-            
+
             $img->setImageFormat('jpg');
             $img->setCompressionQuality(100);
 
@@ -740,41 +740,41 @@ function compositeImage()
                 1
             );
             $img->compositeImage($overlay, \Imagick::COMPOSITE_ATOP, 0, 0);
-            
+
             if($is_custom_text=='1'){
                 // GENERATE TEXT
                 $text_img = new \Imagick();
                 $text_img->newPseudoImage($overlay->getImageWidth(), $overlay->getImageHeight()*(125/415), "gradient:rgba(0,0,0,0)-rgba(0,0,0,0)");
-                
+
                 $draw = new \ImagickDraw();
                 $draw->setFillColor('rgb(255, 255, 255)');
                 $draw->setFontSize($overlay->getImageHeight()*($custom_text_font_size/415));
                 $draw->setGravity(\Imagick::GRAVITY_CENTER);
                 $custom_text = str_replace('\n', "\n", $custom_text);
-                
+
                 // NORMALIZE TEXT TO AVOID VERY LONG TEXT WITHOUT NEWSPACES
-                
+
                 $font_analysis = $text_img->queryFontMetrics($draw, $custom_text);
                 $words = explode(' ', $custom_text);
                 $normalized_custom_text = "";
                 foreach($words as $word){
                     $separation = $normalized_custom_text!=''?' ':'';
                     $font_analysis = $text_img->queryFontMetrics($draw, $normalized_custom_text.$separation.$word);
-                    
+
                     if($font_analysis['textWidth']<$overlay->getImageWidth()){
                         $normalized_custom_text.=$separation.$word;
                     } else {
                         $normalized_custom_text.="\n".$separation.$word;
                     }
                 }
-                
+
                 $text_img->annotateimage($draw, 0, 0, 0, $normalized_custom_text);
-                
+
                 $img->compositeImage($text_img, \Imagick::COMPOSITE_ATOP, 0,$overlay->getImageHeight()*((415-135)/415) );
         }
-            
-        
-        
+
+
+
             $overlay->clear();
             $upload_dir = wp_upload_dir();
             $csl_dirname = $upload_dir['basedir'].'/csl-temp';
@@ -791,7 +791,7 @@ function compositeImage()
     }
 }
 function uploadImage($filename)
-{   
+{
 
     // Check the type of file. We'll use this as the 'post_mime_type'.
     $filetype = wp_check_filetype( basename( $filename ), null );
@@ -907,14 +907,15 @@ function csl_set_social_shares_url($network_type, $link, $params = []) {
 
 
 function get_tweets(){
+	$judging_fields = inclusive_entrepreneurship_get_judging_fields();
     require_once __DIR__ . '/vendor/codebird.php';
     $tw_key = get_field('twitter_consumer_key', 'options');
     $tw_secret = get_field('twitter_consumer_secret', 'options');
     \Codebird\Codebird::setConsumerKey($tw_key, $tw_secret);
-    
+
     $ACCESS_TOKEN = get_field('twitter_access_token', 'options');
     $ACCESS_TOKEN_SECRET = get_field('twitter_access_secret', 'options');
-    
+
     $cb = \Codebird\Codebird::getInstance();
     $cb->setToken($ACCESS_TOKEN, $ACCESS_TOKEN_SECRET);
 
@@ -924,15 +925,15 @@ function get_tweets(){
 
     //Make the REST call
     $data = $cb->search_tweets('q='.$q.'&count='.get_field('twitter_number', 'options').'&filter=images&include_entities=true&tweet_mode=extended&since_id='.get_field('twitter_latest_id', 'options'), true);
-    
+
     update_field('twitter_timestamp', date('d/m/Y H:i:s'), 'options');
-    
+
     $pulled_items = 0;
     $mtime = microtime();
     $mtime = explode(" ",$mtime);
     $mtime = $mtime[1] + $mtime[0];
     $starttime = $mtime;
-    
+
     if(count($data->statuses)>0){
         update_field('twitter_latest_id', $data->statuses[0]->id, 'options');
 
@@ -952,7 +953,7 @@ function get_tweets(){
                     $screen_name = $user->screen_name;
                     $full_name = @$user->name;
 
-                    
+
                     $post_params = array(
                       'post_title'    => wp_strip_all_tags( !empty($full_name)?$full_name:$screen_name ),
                       'post_content'  => $fulltext,
@@ -963,48 +964,48 @@ function get_tweets(){
 
                     // Insert the post into the database
                     $post_id = wp_insert_post( $post_params );
-                    
+
                     wp_set_post_terms($post_id, array(3), 'story_category');
-                    
+
                     if(!empty($full_name)){
                         update_field('story_full_name', $full_name, $post_id);
                     }
-                    update_field('story_problem_solve', $fulltext, $post_id);
-                    
+                    update_field($judging_fields[0]['field_name'], $fulltext, $post_id);
+
                     if(get_field('twitter_default_filter', 'options')){
                         $_POST['overlayUrl'] = get_field('twitter_default_filter', 'options');
                     }
-                    
+
                     $image = file_get_contents($media_url);
                     $_POST['imageUrl'] = base64_encode($image);
                     $_POST['source'] = 'manual';
-                    
+
                     $filename = compositeImage();
-                    
+
                     if ($filename) {
                         $att_id = uploadImage($filename);
                         $att_info = wp_get_attachment_image_src($att_id, 'full');
-                        
+
                         update_field('story_image', $att_id , $post_id);
                     }
-                    
-                    
+
+
                     $pulled_items++;
                 }
 
-            }   
+            }
         }
     }
-    
+
     $mtime = microtime();
     $mtime = explode(" ",$mtime);
     $mtime = $mtime[1] + $mtime[0];
     $endtime = $mtime;
     $totaltime = ($endtime - $starttime);
-    
+
     update_field('twitter_pull_duration', sprintf('%02d:%02d:%02d', ($totaltime/3600),($totaltime/60%60), $totaltime%60), 'options');
     update_field('twitter_number_pulled', $pulled_items, 'options');
-    
+
     wp_die();
 }
 function ie_cron_schedules($schedules){
@@ -1060,5 +1061,3 @@ function CSL_columns_sorting($columns) {
 add_filter('manage_posts_columns', 'CSL_columns_head');
 add_action('manage_posts_custom_column', 'CSL_columns_content', 10, 2);
 add_filter('manage_edit-story_sortable_columns', 'CSL_columns_sorting');
-
-

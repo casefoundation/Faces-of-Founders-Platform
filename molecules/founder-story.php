@@ -1,5 +1,5 @@
 <section class="founder-story" id="founder-story">
-	
+
     <?php
         if( get_field('enable_limit_date')=='enabled' ){
             $limit_date_field = get_field('form_limit_date');
@@ -7,8 +7,9 @@
             $limit_date = DateTime::createFromFormat('d/m/Y g:i a', $limit_date_field);
             $now = new DateTime();
         }
+				$judging_fields = inclusive_entrepreneurship_get_judging_fields();
     ?>
-    <?php if( get_field('enable_limit_date')=='enabled' ? $now<$limit_date : true ):?>    
+    <?php if( get_field('enable_limit_date')=='enabled' ? $now<$limit_date : true ):?>
         <div class="tell-us-your-story" style="background-image: url('<?php the_field('story_bg_img'); ?>');">
 		<div class="container">
 			<div class="row">
@@ -22,7 +23,7 @@
 				</article>
 			</div>
 		</div>
-	</div>    
+	</div>
         <div class="prizes">
 		<div class="container">
 			<div class="row">
@@ -40,17 +41,17 @@
         <form action="<?php echo admin_url('admin-ajax.php'); ?>" class="story" id="create_story" method="post">
 		<div class="container">
 			<div class="row">
-                            
+
 				<div class="form-group">
-					<label for="your-business">Tell us about your business. What problem is it trying to solve? *</label>
+					<label for="your-business"><?php echo $judging_fields[0]['field_question']; ?> *</label>
 					<textarea class="form-control autoheight maxchars" data-max-chars="2000" rows="1" name="your-business" required></textarea>
 				</div>
 				<div class="form-group">
-					<label for="biggest-obstacle">What has been your biggest obstacle in your entrepreneurship journey? *</label>
+					<label for="biggest-obstacle"><?php echo $judging_fields[1]['field_question']; ?> *</label>
 					<textarea class="form-control autoheight maxchars" data-max-chars="2000" rows="1" name="biggest-obstacle" required></textarea>
 				</div>
 				<div class="form-group">
-					<label for="diversifying-entrepreneurship">How do you or your business contribute to advancing inclusive entrepreneurship? *</label>
+					<label for="diversifying-entrepreneurship"><?php echo $judging_fields[2]['field_question']; ?> *</label>
 					<textarea class="form-control autoheight maxchars" data-max-chars="2000" rows="1" name="diversifying-entrepreneurship" required></textarea>
 				</div>
 				<div class="form-group">
@@ -206,7 +207,7 @@
             <?php the_field('thanks_message'); ?>
         </div>
      </div>
-    
+
     <?php else:?>
         <div class="tell-us-your-story expired-time" style="background-image: url('<?php the_field('story_bg_img'); ?>');">
 		<div class="container">
@@ -233,5 +234,5 @@
         </div>
     </div>
     <?php endif;?>
-    
+
 </section>

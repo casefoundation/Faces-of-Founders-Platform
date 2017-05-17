@@ -1,6 +1,11 @@
 <?php
 if ( ! function_exists( 'inclusive_entrepreneurship_setup' ) ) :
 /**
+ * Juding field functions
+ */
+require get_template_directory() . '/inc/judgingfields.php';
+
+/**
  * Sets up theme defaults and registers support for various WordPress features.
  *
  * Note that this function is hooked into the after_setup_theme hook, which
@@ -280,6 +285,7 @@ wp_add_dashboard_widget('custom_help_widget', 'Stories Info', 'stories_stats');
 }
 
 function stories_stats() {
+		$judging_fields = inclusive_entrepreneurship_get_judging_fields();
 
     $stories_query = new WP_Query(
     array(
@@ -289,17 +295,17 @@ function stories_stats() {
         'meta_query'    => array(
             'relation'      => 'AND',
             array(
-                'key'       => 'story_problem_solve',
+                'key'       => $judging_fields[0]['field_name'],
                 'value'     => '',
                 'compare'   => '!='
             ),
             array(
-                'key'       => 'story_biggest_obstacle',
+                'key'       => $judging_fields[1]['field_name'],
                 'value'     => '',
                 'compare'   => '!='
             ),
             array(
-                'key'       => 'story_entrepeneurship_important',
+                'key'       => $judging_fields[2]['field_name'],
                 'value'     => '',
                 'compare'   => '!='
             )
@@ -421,6 +427,7 @@ add_filter( 'pre_get_posts', 'csl_posts_filter' );
  */
 function csl_posts_filter( $query ){
     global $pagenow, $post_type;
+		$judging_fields = inclusive_entrepreneurship_get_judging_fields();
 
     if ( 'story' == $post_type && is_admin() && $pagenow=='edit.php' && isset($_GET['story-filter']) && $_GET['story-filter'] != '') {
         if ('images' == $_GET['story-filter']) {
@@ -440,17 +447,17 @@ function csl_posts_filter( $query ){
             $add_query = array(
                 'relation'      => 'AND',
                 array(
-                    'key'       => 'story_problem_solve',
+                    'key'       => $judging_fields[0]['field_name'],
                     'value'     => '',
                     'compare'   => '!='
                 ),
                 array(
-                    'key'       => 'story_biggest_obstacle',
+                    'key'       => $judging_fields[1]['field_name'],
                     'value'     => '',
                     'compare'   => '!='
                 ),
                 array(
-                    'key'       => 'story_entrepeneurship_important',
+                    'key'       => $judging_fields[2]['field_name'],
                     'value'     => '',
                     'compare'   => '!='
                 )
