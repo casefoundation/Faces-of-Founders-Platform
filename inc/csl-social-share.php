@@ -3,11 +3,11 @@
 add_action( 'wp_enqueue_scripts', 'csl_social_share_enqueue_scripts' );
 function csl_social_share_enqueue_scripts() {
 
-	wp_enqueue_script( 'csl_ss', get_template_directory_uri() . '/js/cslsocialshare.js', array('jquery'), '1.8.8' );
+  wp_enqueue_script( 'csl_ss', get_template_directory_uri() . '/js/cslsocialshare.js', array('jquery'), '1.8.8' );
 
-	wp_localize_script( 'csl_ss', 'cslss', array(
-		'ajax_url' => admin_url( 'admin-ajax.php' )
-	));
+  wp_localize_script( 'csl_ss', 'cslss', array(
+    'ajax_url' => admin_url( 'admin-ajax.php' )
+  ));
 }
 
 add_action( 'wp_ajax_nopriv_twitter_auth', 'twitter_auth' );
@@ -18,10 +18,10 @@ function twitter_auth()
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-	require_once __DIR__ . '/vendor/codebird.php';
+  require_once __DIR__ . '/vendor/codebird.php';
     $tw_key = get_field('twitter_consumer_key', 'options');
     $tw_secret = get_field('twitter_consumer_secret', 'options');
-	\Codebird\Codebird::setConsumerKey($tw_key, $tw_secret);
+  \Codebird\Codebird::setConsumerKey($tw_key, $tw_secret);
     $cb = \Codebird\Codebird::getInstance();
 
     if (!@$_SESSION['oauth_token']) {
@@ -123,7 +123,7 @@ function tweet_picture_auth(){
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-	require_once __DIR__ . '/vendor/codebird.php';
+  require_once __DIR__ . '/vendor/codebird.php';
     $tw_key = get_field('twitter_consumer_key', 'options');
     $tw_secret = get_field('twitter_consumer_secret', 'options');
     \Codebird\Codebird::setConsumerKey($tw_key, $tw_secret);
@@ -515,7 +515,7 @@ function generate_image()
 function subscribeEmail($email){
 
         require_once dirname(__FILE__) . "/vendor/Mailchimp.php";
-				require get_stylesheet_directory() . '/mailchimpconfig.php';
+        require get_stylesheet_directory() . '/mailchimpconfig.php';
 
             $MailChimp = new MailChimp($mailchimp_api_key);
 
@@ -896,105 +896,104 @@ function csl_set_social_shares_url($network_type, $link, $params = []) {
 
 
 function get_tweets(){
-	$judging_fields = inclusive_entrepreneurship_get_judging_fields();
+  $judging_fields = inclusive_entrepreneurship_get_judging_fields();
     require_once __DIR__ . '/vendor/codebird.php';
     $tw_key = get_field('twitter_consumer_key', 'options');
     $tw_secret = get_field('twitter_consumer_secret', 'options');
-    \Codebird\Codebird::setConsumerKey($tw_key, $tw_secret);
-
     $ACCESS_TOKEN = get_field('twitter_access_token', 'options');
     $ACCESS_TOKEN_SECRET = get_field('twitter_access_secret', 'options');
+    if ($tw_key && trim($tw_key) != '' && $tw_secret && trim($tw_secret) != '' && $ACCESS_TOKEN && trim($ACCESS_TOKEN) != '' && $ACCESS_TOKEN_SECRET && trim($ACCESS_TOKEN_SECRET) != '') {
+      \Codebird\Codebird::setConsumerKey($tw_key, $tw_secret);
+      $cb = \Codebird\Codebird::getInstance();
+      $cb->setToken($ACCESS_TOKEN, $ACCESS_TOKEN_SECRET);
 
-    $cb = \Codebird\Codebird::getInstance();
-    $cb->setToken($ACCESS_TOKEN, $ACCESS_TOKEN_SECRET);
+      //retrieve posts
+      $q = get_field('twitter_query', 'options');
+      //max_id
 
-    //retrieve posts
-    $q = get_field('twitter_query', 'options');
-    //max_id
+      //Make the REST call
+      $data = $cb->search_tweets('q='.$q.'&count='.get_field('twitter_number', 'options').'&filter=images&include_entities=true&tweet_mode=extended&since_id='.get_field('twitter_latest_id', 'options'), true);
 
-    //Make the REST call
-    $data = $cb->search_tweets('q='.$q.'&count='.get_field('twitter_number', 'options').'&filter=images&include_entities=true&tweet_mode=extended&since_id='.get_field('twitter_latest_id', 'options'), true);
+      update_field('twitter_timestamp', date('d/m/Y H:i:s'), 'options');
 
-    update_field('twitter_timestamp', date('d/m/Y H:i:s'), 'options');
+      $pulled_items = 0;
+      $mtime = microtime();
+      $mtime = explode(" ",$mtime);
+      $mtime = $mtime[1] + $mtime[0];
+      $starttime = $mtime;
 
-    $pulled_items = 0;
-    $mtime = microtime();
-    $mtime = explode(" ",$mtime);
-    $mtime = $mtime[1] + $mtime[0];
-    $starttime = $mtime;
+      if(count($data->statuses)>0){
+          update_field('twitter_latest_id', $data->statuses[0]->id, 'options');
 
-    if(count($data->statuses)>0){
-        update_field('twitter_latest_id', $data->statuses[0]->id, 'options');
+          foreach($data->statuses as $status){
+              if(isset($status->entities->media)){
+                  if(count($status->entities->media) > 0){
+                      $image_info = $status->entities->media[0];
 
-        foreach($data->statuses as $status){
-            if(isset($status->entities->media)){
-                if(count($status->entities->media) > 0){
-                    $image_info = $status->entities->media[0];
+                      $media_url = $image_info->media_url;
 
-                    $media_url = $image_info->media_url;
+                      $fulltext = $status->full_text;
+                      $status_id = $status->id;
+                      $status_url = $status->full_text;
 
-                    $fulltext = $status->full_text;
-                    $status_id = $status->id;
-                    $status_url = $status->full_text;
+                      $user = $status->user;
 
-                    $user = $status->user;
-
-                    $screen_name = $user->screen_name;
-                    $full_name = @$user->name;
-
-
-                    $post_params = array(
-                      'post_title'    => wp_strip_all_tags( !empty($full_name)?$full_name:$screen_name ),
-                      'post_content'  => $fulltext,
-                      'post_status'   => 'pending',
-                      'post_author'   => 1,
-                      'post_type'     => 'story'
-                    );
-
-                    // Insert the post into the database
-                    $post_id = wp_insert_post( $post_params );
-
-                    wp_set_post_terms($post_id, array(3), 'story_category');
-
-                    if(!empty($full_name)){
-                        update_field('story_full_name', $full_name, $post_id);
-                    }
-                    update_field($judging_fields[0]['field_name'], $fulltext, $post_id);
-
-                    if(get_field('twitter_default_filter', 'options')){
-                        $_POST['overlayUrl'] = get_field('twitter_default_filter', 'options');
-                    }
-
-                    $image = file_get_contents($media_url);
-                    $_POST['imageUrl'] = base64_encode($image);
-                    $_POST['source'] = 'manual';
-
-                    $filename = compositeImage();
-
-                    if ($filename) {
-                        $att_id = uploadImage($filename);
-                        $att_info = wp_get_attachment_image_src($att_id, 'full');
-
-                        update_field('story_image', $att_id , $post_id);
-                    }
+                      $screen_name = $user->screen_name;
+                      $full_name = @$user->name;
 
 
-                    $pulled_items++;
-                }
+                      $post_params = array(
+                        'post_title'    => wp_strip_all_tags( !empty($full_name)?$full_name:$screen_name ),
+                        'post_content'  => $fulltext,
+                        'post_status'   => 'pending',
+                        'post_author'   => 1,
+                        'post_type'     => 'story'
+                      );
 
-            }
-        }
+                      // Insert the post into the database
+                      $post_id = wp_insert_post( $post_params );
+
+                      wp_set_post_terms($post_id, array(3), 'story_category');
+
+                      if(!empty($full_name)){
+                          update_field('story_full_name', $full_name, $post_id);
+                      }
+                      update_field($judging_fields[0]['field_name'], $fulltext, $post_id);
+
+                      if(get_field('twitter_default_filter', 'options')){
+                          $_POST['overlayUrl'] = get_field('twitter_default_filter', 'options');
+                      }
+
+                      $image = file_get_contents($media_url);
+                      $_POST['imageUrl'] = base64_encode($image);
+                      $_POST['source'] = 'manual';
+
+                      $filename = compositeImage();
+
+                      if ($filename) {
+                          $att_id = uploadImage($filename);
+                          $att_info = wp_get_attachment_image_src($att_id, 'full');
+
+                          update_field('story_image', $att_id , $post_id);
+                      }
+
+
+                      $pulled_items++;
+                  }
+
+              }
+          }
+      }
+
+      $mtime = microtime();
+      $mtime = explode(" ",$mtime);
+      $mtime = $mtime[1] + $mtime[0];
+      $endtime = $mtime;
+      $totaltime = ($endtime - $starttime);
+
+      update_field('twitter_pull_duration', sprintf('%02d:%02d:%02d', ($totaltime/3600),($totaltime/60%60), $totaltime%60), 'options');
+      update_field('twitter_number_pulled', $pulled_items, 'options');
     }
-
-    $mtime = microtime();
-    $mtime = explode(" ",$mtime);
-    $mtime = $mtime[1] + $mtime[0];
-    $endtime = $mtime;
-    $totaltime = ($endtime - $starttime);
-
-    update_field('twitter_pull_duration', sprintf('%02d:%02d:%02d', ($totaltime/3600),($totaltime/60%60), $totaltime%60), 'options');
-    update_field('twitter_number_pulled', $pulled_items, 'options');
-
     wp_die();
 }
 function ie_cron_schedules($schedules){

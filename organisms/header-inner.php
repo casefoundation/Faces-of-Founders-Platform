@@ -15,9 +15,9 @@
                   <?php
                     global $wpdb;
                     $prefix = $wpdb->prefix;
-                  	$table_name = $prefix . "csl_story_reviews";
-                  	$current_user = wp_get_current_user();
-                  	$stories = $wpdb->get_results(
+                    $table_name = $prefix . "csl_story_reviews";
+                    $current_user = wp_get_current_user();
+                    $stories = $wpdb->get_results(
                         "
                         SELECT ID
                         FROM $table_name r

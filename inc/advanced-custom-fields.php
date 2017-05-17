@@ -875,7 +875,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'label' => 'Access Token',
                 'name' => 'twitter_access_token',
                 'type' => 'text',
-                'instructions' => 'https://apps.twitter.com > Keys and Access Tokens > Your Access Token > 	Access Token',
+                'instructions' => 'https://apps.twitter.com > Keys and Access Tokens > Your Access Token >   Access Token',
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array (
@@ -896,7 +896,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'label' => 'Access Token Secret',
                 'name' => 'twitter_access_secret',
                 'type' => 'text',
-                'instructions' => 'https://apps.twitter.com > Keys and Access Tokens > Your Access Token > 	Access Token Secret',
+                'instructions' => 'https://apps.twitter.com > Keys and Access Tokens > Your Access Token >   Access Token Secret',
                 'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array (
