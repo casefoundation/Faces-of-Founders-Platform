@@ -1,9 +1,9 @@
 <?php
 if ( ! function_exists( 'inclusive_entrepreneurship_setup' ) ) :
 /**
- * Juding field functions
+ * Judging field functions
  */
-require get_template_directory() . '/inc/judgingfields.php';
+require get_template_directory() . '/inc/judging-fields.php';
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.

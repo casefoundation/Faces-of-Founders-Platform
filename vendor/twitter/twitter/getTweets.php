@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+
 require_once('TwitterAPIExchange.php');
 
 /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
@@ -58,7 +58,3 @@ $queryResult = $parseQuery->find();
     }
 
     echo json_encode($tweets_arrary);
-
-
-
-

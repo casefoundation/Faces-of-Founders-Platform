@@ -18,7 +18,6 @@
    4. [Support](#support)
    5. [Submission Review](#submission-review)
 5. [Manually Adding or Modifying Stories](#manually-adding-or-modifying-stories)
-6. [Modifying The Submitted Story Fields](#modifying-the-submitted-story-fields)
 
 ## Closing Submissions
 
@@ -101,7 +100,3 @@ For each submitted story, a judge can view and score each of the respondent's an
 To add a new submission manually, go to _Stories_ and then _Add New_ from sidebar in the WordPress dashboard. From there, the same fields are available that are available on the front end to submitting users.
 
 To modify a previously submitted story, go to _Stories_ from sidebar in the WordPress dashboard. From there, use the table and WordPress searching/filtering tools to locate the proper story. Click the title/name of submitter to go to the edit screen.
-
-## Modifying The Submitted Story Fields
-
-Each field used in the submitted stories is an Advanced Custom Field (ACF). To modify the questions asked for respondents, use that plugin to produce a new field set and update the necessary references in the theme. This theme stores ACF code in `inc/advanced-custom-fields.php`.

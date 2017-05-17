@@ -6,6 +6,7 @@
    1. [WordPress](#wordpress)
    2. [Plugins](#plugins) 	
    3. [Theme](#theme)
+   4. [Configuration Files](#configuration-files)
 2. [Configuration](#configuration)
    1. [Login With Ajax](#login-with-ajax)
    2. [Homepage Setup](#homepage-setup)
@@ -33,6 +34,12 @@ After WordPress is running with the required plugins, download the folder contai
 # cd wp-content/themes
 # git clone https://github.com/casefoundation/judging-platform.git
 ```
+
+### Configuration Files
+
+To configure the fields that will appear in the submitted stories, copy the file `fieldconfig.sample.php` to `fieldconfig.php` in the theme or child theme. In that configuration file, specify exactly three field names and questions that will appear for visitors submitting stories and in the judging review. This configuration is immutable following theme installation.
+
+To configure MailChimp email signup integration so that email signups to the site go into a MailChimp list, copy the file `mailchimpconfig.sample.php` to `mailchimpconfig.php` in the theme or child theme. In that configuration file, specify a MailChimp API key and a MailChimp list ID.
 
 ## Configuration
 
@@ -99,7 +106,3 @@ To power the Twitter API query as well as the Twitter and Facebook login buttons
 ## Customizing the Theme
 
 To customize the look and feel of this theme, it is possible to either use this as a parent theme or to manually override this theme directly. Note that this theme uses Gulp to build all Javascript and CSS.
-
-## MailChimp
-
-To automatically subscribe submissions and signups to a MailChimp account, add a MailChimp key and list ID on lines 526 and 527 of `inc/csl-social-share.php`.

@@ -119,8 +119,6 @@ add_action( 'wp_ajax_nopriv_tweet_picture_auth', 'tweet_picture_auth' );
 add_action( 'wp_ajax_tweet_picture_auth', 'tweet_picture_auth' );
 function tweet_picture_auth(){
 
-    ini_set('display_errors', 'On');
-    error_reporting(E_ALL);
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -265,9 +263,6 @@ function refresh_image()
 { ?>
     <div class="founders-grid">
         <?php
-        // FACTS
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
 
             $facts_params = array(
                 'post_type' => 'fact',
@@ -520,15 +515,13 @@ function generate_image()
 function subscribeEmail($email){
 
         require_once dirname(__FILE__) . "/vendor/Mailchimp.php";
+				require get_stylesheet_directory() . '/mailchimpconfig.php';
 
-
-            $APIKey = '';
-            $listID = '';
-            $MailChimp = new MailChimp($APIKey);
+            $MailChimp = new MailChimp($mailchimp_api_key);
 
 
             $result = $MailChimp->call('lists/subscribe', array(
-                'id'                => $listID,
+                'id'                => $mailchimp_list_id,
                 'email'             => array('email'=>$email),
                 'double_optin'      => false,
                 'update_existing'   => true,
@@ -539,10 +532,6 @@ function subscribeEmail($email){
 }
 function compositeImage()
 {
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     $overlay_url = $_POST['overlayUrl'];
     $image_url = $_POST['imageUrl'];
     $source = $_POST['source'];
