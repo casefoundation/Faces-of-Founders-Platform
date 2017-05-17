@@ -9,3 +9,8 @@ function inclusive_entrepreneurship_get_judging_fields() {
   assert(count($judging_fields) == 3,'Judging field config array length must be exactly 3.');
   return $judging_fields;
 }
+
+function inclusive_entrepreneurship_get_judging_final_guidance() {
+  global $judging_final_guidance;
+  return $judging_final_guidance;
+}

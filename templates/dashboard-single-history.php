@@ -108,24 +108,7 @@ $judging_fields = inclusive_entrepreneurship_get_judging_fields();
               </div>
               <div id="accordion-1" class="panel-collapse collapse in" aria-expanded="true">
                   <div class="panel-body">
-                    <p><strong>Reviewers’ Ranking:</strong>
-                      Is this submission by an entrepreneur who has begun the necessary steps to build a business?</p>
-
-                      <div class="rank-con">
-                        <strong class="rank-title">Questions to Consider When Ranking: We’re looking for exceptional entrepreneurs who are building companies that have or have the opportunity to scale and create change. Note: It is acceptable to be in the early stage of the startup, but they must demonstrate an understanding of market opportunity, profitability and growth strategy.
-</strong>
-                          <ul>
-                          <li>How original is this business idea?</li>
-                          <li>Is the founder addressing a real need?</li>
-                          <li>Is the company compelling and feasible?</li>
-                          <li>Is this a scalable project?</li>
-                          <li>If the founder is early stage, do they demonstrate an understanding of their market opportunity,
-                          profitability and growth strategy?</li>
-                          <li>Is the founder motivated and passionate about making a change in the world?</li>
-                          <li>Do you think it has the potential to succeed or has already succeeded? </li>
-                        </ul>
-                      </div>
-
+                    <p><?php echo $judging_fields[0]['field_judging_guidance']; ?></p>
                   </div>
               </div>
               <div class="score-panel">
@@ -162,24 +145,7 @@ $judging_fields = inclusive_entrepreneurship_get_judging_fields();
               </div>
               <div id="accordion-2" class="panel-collapse collapse in" aria-expanded="true">
                   <div class="panel-body">
-                    <p><strong>Reviewers’ Ranking: </strong>
-                      Will the entrepreneur’s story highlight obstacles and tactics for overcoming
-                      them that may be helpful to other aspiring or struggling entrepreneurs?</p>
-
-                      <div class="rank-con">
-                        <strong class="rank-title">Questions to Consider When Ranking: We’re looking for
-                          stories of entrepreneurs who are breaking down the barriers and stereotypes
-                          often faced by women entrepreneurs and entrepreneurs of color.</strong>
-                          <ul>
-                          <li>Did the founder use original or non-typical methods to start or fund their company?</li>
-                          <li>Are their tactics or approaches they have employed to overcome their barriers replicable by other entrepreneurs?</li>
-                          <li>Has the company met or exceeded its intended goals at this point in its growth?</li>
-                          <li>Is this a scalable project?</li>
-                          <li>Did the company grow or get better because it learned from experiments or failure?</li>
-                          <li>Will this entrepreneur benefit from the ability to celebrate and champion their work?</li>
-                        </ul>
-                      </div>
-
+                    <p><?php echo $judging_fields[1]['field_judging_guidance']; ?></p>
                   </div>
               </div>
               <div class="score-panel">
@@ -215,19 +181,7 @@ $judging_fields = inclusive_entrepreneurship_get_judging_fields();
               </div>
               <div id="accordion-3" class="panel-collapse collapse in" aria-expanded="true">
                   <div class="panel-body">
-                    <p><strong>Reviewers’ Ranking: </strong>How does this founder contribute to the overall movement to bring a more inclusive approach to entrepreneurship?</p>
-
-                      <div class="rank-con">
-                        <strong class="rank-title">Questions to Consider When Ranking: We are not selecting only entrepreneurs of color and women,
-                          but it is important that whatever entrepreneur has their story told is committed to the broader mission of inclusion in entrepreneurship.</strong>
-                          <ul>
-                          <li>How does this founder and/or business contribute to advancing inclusive entrepreneurship?</li>
-                          <li>Does the company address barriers or create opportunities for communities of color or women?</li>
-                          <li>Is the founder an entrepreneur of color or woman entrepreneur?</li>
-                          <li>What will other founders or aspiring entrepreneurs learn from this founder?</li>
-                          <li>How will this story contribute to a larger narrative arch around supporting all entrepreneurs?</li>
-                        </ul>
-                      </div>
+                    <p><?php echo $judging_fields[2]['field_judging_guidance']; ?></p>
 
                   </div>
               </div>
@@ -263,19 +217,7 @@ $judging_fields = inclusive_entrepreneurship_get_judging_fields();
                 </div>
                 <div id="accordion-3" class="panel-collapse collapse in" aria-expanded="true">
                   <div class="panel-body">
-                    <p><strong>Reviewers’ Ranking: Does this entrepreneur represent a story and point of view that you would want to highlight as a model for inclusive entrepreneurship?</strong></p>
-
-                    <div class="rank-con">
-                      <strong class="rank-title">Questions to Consider When Ranking:</strong>
-                      <ul>
-                        <li>Will this story contribute to changing the narrative of who is and can be an entrepreneur?</li>
-                        <li>Will this story help to catalyze a movement around inclusive entrepreneurship?</li>
-                        <li>Does this story demonstrate or indicate a need for levelling the playing field for all entrepreneurs from all places?</li>
-                        <li>Are their tactics or approaches they have employed to overcome their barriers replicable by other entrepreneurs?</li>
-                        <li>Is this entrepreneur groundbreaking, exemplary or highly successful in tackling an inclusive approach to entrepreneurship?</li>
-                      </ul>
-                    </div>
-
+                    <p><?php echo inclusive_entrepreneurship_get_judging_final_guidance(); ?></p>
                   </div>
                 </div>
                 <div class="score-panel">

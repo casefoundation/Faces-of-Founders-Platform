@@ -37,7 +37,7 @@ After WordPress is running with the required plugins, download the folder contai
 
 ### Configuration Files
 
-To configure the fields that will appear in the submitted stories, copy the file `fieldconfig.sample.php` to `fieldconfig.php` in the theme or child theme. In that configuration file, specify exactly three field names and questions that will appear for visitors submitting stories and in the judging review. This configuration is immutable following theme installation.
+To configure the fields that will appear in the submitted stories, copy the file `fieldconfig.sample.php` to `fieldconfig.php` in the theme or child theme. In that configuration file, specify exactly three field names and questions that will appear for visitors submitting stories and in the judging review along with the guidance text that should be given to judges when reviewing stories. This configuration is immutable following theme installation.
 
 To configure MailChimp email signup integration so that email signups to the site go into a MailChimp list, copy the file `mailchimpconfig.sample.php` to `mailchimpconfig.php` in the theme or child theme. In that configuration file, specify a MailChimp API key and a MailChimp list ID.
 
