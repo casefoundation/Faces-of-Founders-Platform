@@ -13,59 +13,59 @@ require get_template_directory() . '/inc/judgingfields.php';
  * as indicating support for post thumbnails.
  */
 function inclusive_entrepreneurship_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on inclusive-entrepreneurship, use a find and replace
-	 * to change 'inclusive-entrepreneurship' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'inclusive-entrepreneurship', get_template_directory() . '/languages' );
+  /*
+   * Make theme available for translation.
+   * Translations can be filed in the /languages/ directory.
+   * If you're building a theme based on inclusive-entrepreneurship, use a find and replace
+   * to change 'inclusive-entrepreneurship' to the name of your theme in all the template files.
+   */
+  load_theme_textdomain( 'inclusive-entrepreneurship', get_template_directory() . '/languages' );
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+  // Add default posts and comments RSS feed links to head.
+  add_theme_support( 'automatic-feed-links' );
 
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
+  /*
+   * Let WordPress manage the document title.
+   * By adding theme support, we declare that this theme does not use a
+   * hard-coded <title> tag in the document head, and expect WordPress to
+   * provide it for us.
+   */
+  add_theme_support( 'title-tag' );
 
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
-	add_theme_support( 'post-thumbnails' );
+  /*
+   * Enable support for Post Thumbnails on posts and pages.
+   *
+   * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+   */
+  add_theme_support( 'post-thumbnails' );
         //add_image_size('open_graph', 1200, 630);
         add_image_size('story-full', 2100, 2100, true);
         add_image_size('story-preview', 500, 500, true);
         add_image_size('story-medium', 300, 300, true);
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'inclusive-entrepreneurship' ),
+  // This theme uses wp_nav_menu() in one location.
+  register_nav_menus( array(
+    'primary' => esc_html__( 'Primary', 'inclusive-entrepreneurship' ),
         'footer' => 'Footer Menu',
-	) );
+  ) );
 
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	) );
+  /*
+   * Switch default core markup for search form, comment form, and comments
+   * to output valid HTML5.
+   */
+  add_theme_support( 'html5', array(
+    'search-form',
+    'comment-form',
+    'comment-list',
+    'gallery',
+    'caption',
+  ) );
 
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'inclusive_entrepreneurship_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+  // Set up the WordPress core custom background feature.
+  add_theme_support( 'custom-background', apply_filters( 'inclusive_entrepreneurship_custom_background_args', array(
+    'default-color' => 'ffffff',
+    'default-image' => '',
+  ) ) );
 }
 endif;
 add_action( 'after_setup_theme', 'inclusive_entrepreneurship_setup' );
@@ -78,7 +78,7 @@ add_action( 'after_setup_theme', 'inclusive_entrepreneurship_setup' );
  * @global int $content_width
  */
 function inclusive_entrepreneurship_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'inclusive_entrepreneurship_content_width', 640 );
+  $GLOBALS['content_width'] = apply_filters( 'inclusive_entrepreneurship_content_width', 640 );
 }
 add_action( 'after_setup_theme', 'inclusive_entrepreneurship_content_width', 0 );
 
@@ -88,15 +88,15 @@ add_action( 'after_setup_theme', 'inclusive_entrepreneurship_content_width', 0 )
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function inclusive_entrepreneurship_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'inclusive-entrepreneurship' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'inclusive-entrepreneurship' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
+  register_sidebar( array(
+    'name'          => esc_html__( 'Sidebar', 'inclusive-entrepreneurship' ),
+    'id'            => 'sidebar-1',
+    'description'   => esc_html__( 'Add widgets here.', 'inclusive-entrepreneurship' ),
+    'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h2 class="widget-title">',
+    'after_title'   => '</h2>',
+  ) );
 }
 add_action( 'widgets_init', 'inclusive_entrepreneurship_widgets_init' );
 
@@ -152,13 +152,13 @@ function inclusive_entrepreneurship_scripts() {
     wp_register_script('exif', get_template_directory_uri() . '/js/lib/exif.js', array('jquery'), '1.2.6'); // jQuery UI
     wp_enqueue_script('exif'); // Enqueue it!
 
-		wp_register_script('tablesorter', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', array('jquery'), '2.0.5'); // jQuery UI
+    wp_register_script('tablesorter', get_template_directory_uri() . '/js/jquery.tablesorter.min.js', array('jquery'), '2.0.5'); // jQuery UI
     wp_enqueue_script('tablesorter'); // Enqueue it!
 
-		wp_register_script('sweetalert-js', get_template_directory_uri() . '/js/sweetalert.min.js', array('jquery'), '1.1.3'); // jQuery UI
+    wp_register_script('sweetalert-js', get_template_directory_uri() . '/js/sweetalert.min.js', array('jquery'), '1.1.3'); // jQuery UI
     wp_enqueue_script('sweetalert-js'); // Enqueue it!
 
-	// IN HOUSE
+  // IN HOUSE
     wp_register_script('ie-csl-utils', get_template_directory_uri() . '/src/js/lib/utils.js', array('jquery'), '1.0.0'); // Utils
     wp_enqueue_script('ie-csl-utils'); // Enqueue it!
 
@@ -166,11 +166,11 @@ function inclusive_entrepreneurship_scripts() {
     wp_enqueue_script('ie-csl-scripts'); // Enqueue it!
 
 
-	wp_enqueue_script( 'inclusive-entrepreneurship-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+  wp_enqueue_script( 'inclusive-entrepreneurship-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+    wp_enqueue_script( 'comment-reply' );
+  }
 }
 add_action( 'wp_enqueue_scripts', 'inclusive_entrepreneurship_scripts' );
 
@@ -185,13 +185,13 @@ function ie_remove_editor_to_story() {
  */
 if( function_exists('acf_add_options_page') ) {
 
-	acf_add_options_page(array(
-		'page_title' 	=> 'Site Options',
-		'menu_title'	=> 'Site Options',
-		'menu_slug' 	=> 'site-options',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> false
-	));
+  acf_add_options_page(array(
+    'page_title'   => 'Site Options',
+    'menu_title'  => 'Site Options',
+    'menu_slug'   => 'site-options',
+    'capability'  => 'edit_posts',
+    'redirect'    => false
+  ));
 
 }
 
@@ -261,9 +261,9 @@ function download_attachments_template_redirect()
  */
 add_filter('body_class','role_class_names');
 function role_class_names($classes) {
-		global $current_user;
-		$user_roles = $current_user->roles;
-		$user_role = array_shift($user_roles);
+    global $current_user;
+    $user_roles = $current_user->roles;
+    $user_role = array_shift($user_roles);
     $classes[] = $user_role;
     return $classes;
 }
@@ -285,7 +285,7 @@ wp_add_dashboard_widget('custom_help_widget', 'Stories Info', 'stories_stats');
 }
 
 function stories_stats() {
-		$judging_fields = inclusive_entrepreneurship_get_judging_fields();
+    $judging_fields = inclusive_entrepreneurship_get_judging_fields();
 
     $stories_query = new WP_Query(
     array(
@@ -427,7 +427,7 @@ add_filter( 'pre_get_posts', 'csl_posts_filter' );
  */
 function csl_posts_filter( $query ){
     global $pagenow, $post_type;
-		$judging_fields = inclusive_entrepreneurship_get_judging_fields();
+    $judging_fields = inclusive_entrepreneurship_get_judging_fields();
 
     if ( 'story' == $post_type && is_admin() && $pagenow=='edit.php' && isset($_GET['story-filter']) && $_GET['story-filter'] != '') {
         if ('images' == $_GET['story-filter']) {
@@ -479,9 +479,9 @@ function csl_posts_filter( $query ){
 
 add_action('wp_login','user_last_login', 0, 2);
 function user_last_login($login, $user) {
-	$user = get_user_by('login',$login);
-	$now = time();
-	update_usermeta( $user->ID, 'user_last_login', $now );
+  $user = get_user_by('login',$login);
+  $now = time();
+  update_usermeta( $user->ID, 'user_last_login', $now );
 }
 add_action( 'init', 'csl_create_judge_role' );
 function csl_create_judge_role() {
