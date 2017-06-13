@@ -19,6 +19,8 @@ To address these barriers, the [Case Foundation](http://casefoundation.org/) lau
 
 To read more about this campaign, visit [casefoundation.org/facesoffounders](http://casefoundation.org/facesoffounders/).
 
+To see the platform as we used it for #FacesOfFounders, see our [Webex training](https://casefoundation.webex.com/casefoundation/ldr.php?RCID=17f8845c3839ae746440efea1f3c3ece).
+
 ## Purpose
 
 ![Preview of judging platform](docs/use_adminsubmissions.png)
