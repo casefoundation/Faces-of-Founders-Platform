@@ -41,13 +41,13 @@ Upon visiting `/dashboard-admin/` for the first time, admins must assign stories
 
 ![Admin dashboard judges](use_adminjudges.png)
 
-Once inside the admin dashboard, the first view an admin sees is status on judges. The table details the review status of each judge and his or her last login time.
+Once inside the admin dashboard, the first view an admin sees is the status of the judges. The table details the review status of each judge and his or her last login time.
 
 ### Submissions
 
 ![Admin dashboard submissions](use_adminsubmissions.png)
 
-In the dashboard is also a status view for submitted stories. The table details how many judges each story has, the review status of each story, and each story's average score.
+In the dashboard is also a status view for submitted stories. The table details how many judges are assigned to each story, the review status of each story, and each story's average score.
 
 ### Requests
 
@@ -59,7 +59,7 @@ If a judge requests more stories to review by using the [Request More](#request-
 
 ![Admin dashboard recusals](use_adminrecuses.png)
 
-When a judge does recuse his or herself from a story, the recusal record appears in this table.
+When a judge recuses his or herself from a story, the recusal record appears in this table.
 
 ### Export
 
@@ -99,4 +99,4 @@ For each submitted story, a judge can view and score each of the respondent's an
 
 To add a new submission manually, go to _Stories_ and then _Add New_ from sidebar in the WordPress dashboard. From there, the same fields are available that are available on the front end to submitting users.
 
-To modify a previously submitted story, go to _Stories_ from sidebar in the WordPress dashboard. From there, use the table and WordPress searching/filtering tools to locate the proper story. Click the title/name of submitter to go to the edit screen.
+To modify a previously submitted story, go to _Stories_ from the sidebar of the WordPress dashboard. From there, use the table and WordPress searching/filtering tools to locate the proper story. Click the title/name of submitter to go to the edit screen.

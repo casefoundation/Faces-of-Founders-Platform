@@ -53,11 +53,11 @@ Configure Login With Ajax by going to the WordPress dashboard and clicking _Sett
 
 ### Homepage Setup
 
-The theme automatically creates the required pages (Dashboard Admin, Dashboard Judge, Login and Review Story) and assigns its template to each page, it is important that these pages are not deleted.
+The theme automatically creates the required pages (Dashboard Admin, Dashboard Judge, Login and Review Story) and assigns its template to each page. It is important that these pages are not deleted.
 
 ![Reading settings](reading_settings.png)
 
-Create a page and configure it as homepage, for that go to _Settings_ and then _Reading_ from the WordPress dashboard and select the option _A static page (select below)_ and in the _Front Page_ dropdown choose the page previously created.
+Create a page and configure it as the homepage by going to _Settings_ and then _Reading_ from the WordPress dashboard and select the option _A static page (select below)_ and in the _Front Page_ dropdown choose the page previously created.
 
 ![Homepage setup](homepage_setup.png)
 
@@ -71,7 +71,7 @@ The rest of the site is configurable from the _Site Options_ link in the sidebar
 
 ![Social links setup](siteoptions_social.png)
 
-In this section is for URLs to social networks like Facebook, Twitter, Instagram and Email.
+This section is for URLs to social networks like Facebook, Twitter, Instagram and Email.
 
 #### Design
 
@@ -95,13 +95,13 @@ On the homepage, there are two help modals that appear upon user request. Set th
 
 ![Twitter Tokens setup](siteoptions_tokens.png)
 
-To also accept submissions via the Twitter API, setup a hashtag to monitor as well as a Twitter OAuth token and secret. The site will run a cron job that queries Twitter based on those credentials and hashtag and apply the specified overlay. (Also a 300x300 pixel image.) To setup a Twitter app with the appropriate credentials, visit [apps.twitter.com](https://apps.twitter.com/).
+To also accept submissions via the Twitter API, set up a hashtag to monitor and a Twitter OAuth token and secret for WordPress to access the API. The site will run a cron job that queries Twitter based on those credentials and hashtag and apply the specified overlay. (Also a 300x300 pixel image.) To set up a Twitter app with the appropriate credentials, visit [apps.twitter.com](https://apps.twitter.com/).
 
 #### Facebook & Twitter Configuration
 
 ![Facebook & Twitter Configuration setup](siteoptions_facebooktwitter.png)
 
-To power the Twitter API query as well as the Twitter and Facebook login buttons from the homepage, also specific the Twitter consumer key and secret and Facebook App ID here. Setting the application keys for Facebook and Twitter allows users to pull-in their profile pictures and also set their generated image as their profile picture.
+To power the Twitter API query and the Twitter and Facebook login buttons from the homepage, also specify the Twitter consumer key and secret and Facebook App ID here. Setting the application keys for Facebook and Twitter allows users to pull-in their profile pictures and also set their generated image as their profile picture.
 
 ## Customizing the Theme
 
