@@ -135,7 +135,7 @@ if( function_exists('acf_add_local_field_group') ):
                     'class' => '',
                     'id' => '',
                 ),
-                'default_value' => '',
+                'default_value' => 'Thank you for submitting your story.',
                 'tabs' => 'all',
                 'toolbar' => 'full',
                 'media_upload' => 0,
