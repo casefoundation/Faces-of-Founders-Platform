@@ -80,7 +80,7 @@
               </div>
               <?php endif; ?>
                                                         <div class="image-container">
-                                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/src/img/CF-placeholder.png" class="user-image interact">
+                                                            <img src="<?php bloginfo('template_directory'); ?>/src/img/CF-placeholder.png" class="user-image interact">
                                                         </div>
 
             </div>
