@@ -80,7 +80,7 @@
               </div>
               <?php endif; ?>
                                                         <div class="image-container">
-                                                            <img src="<?php bloginfo('stylesheet_directory'); ?>/src/img/CF-placeholder.png" class="user-image interact">
+                                                            <img src="<?php bloginfo('template_directory'); ?>/src/img/CF-placeholder.png" class="user-image interact">
                                                         </div>
 
             </div>
@@ -117,7 +117,7 @@
             <img src="<?php bloginfo('stylesheet_directory'); ?>/src/img/CF-placeholder.png" alt="">
           </figure>
           <div class="share-tools">
-            <h2>Great Photo! Thanks for joining the movement.</h2>
+            <h2>Great Photo!</h2>
             <h3>Now help spread the word.</h3>
             <p>Share your photo on</p>
             <ul>
